@@ -57,7 +57,7 @@ const Explanation = () => {
 				<h3 ref={announcementRef}></h3>
 			</div>
 			<div className={styles.buttonWrapper}>
-				<button onClick={() => { navigate(`/${lang}/${id}/${type}/chat/${step}/1`) }}>{metadata.start}</button>
+				<button onClick={() => { navigate(`/${lang}/${id}/${type}/chat/${step}`) }}>{metadata.start}</button>
 			</div>
 		</div>
 	)

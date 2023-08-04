@@ -7,6 +7,7 @@ import Consent from './pages/Consent/Consent';
 import Demographic from './pages/Demographic/Demographic';
 import Interview from './pages/Interview/Interview';
 import Explanation from './pages/Explanation/Explanation';
+import Chat from './pages/Chat/Chat';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 				<Route path="/:lang/:id/:type/demographic" element={<Demographic/>} />
 				<Route path="/:lang/:id/:type/interview" element={<Interview/>} />
 				<Route path="/:lang/:id/:type/explanation/:step" element={<Explanation />} />
+				<Route path="/:lang/:id/:type/chat/:step" element={<Chat />} />
 			</Routes>
 		</Router>
   );
