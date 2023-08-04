@@ -1,0 +1,12 @@
+@import '../../globalStyle.scss';
+
+.buttonWrapper {
+	button {
+		cursor: pointer;
+	}
+
+	button:hover {
+		font-weight: $bold;
+	}
+
+}

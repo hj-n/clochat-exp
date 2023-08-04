@@ -1,16 +1,7 @@
 @import '../../globalStyle.scss';
 
 
-.introWrapper {
-	padding-top: 8vh;
-	display: flex;
-	flex-direction: column;
-	/* Stack the children vertically */
-	justify-content: space-between;
-	height: 78vh;
-	color: white;
-	text-align: center;
-}
+
 
 .titleWrapper {
 	display: grid;

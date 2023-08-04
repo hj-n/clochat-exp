@@ -1,0 +1,64 @@
+@import '../../globalStyle.scss';
+
+.explanationInnerWrapper {
+	padding: 3vh;
+}
+
+.explanationInnerSubWrapper {
+	padding: 1vh 3vh;
+}
+
+.explanationStudyProcedure {
+	display: flex;
+	padding: 12px;
+	border: 1px solid $mainColor;
+	border-radius: 10px;
+	width: max-content;
+
+	.explanationStudyStep {
+		padding: 10px 10px;
+		text-align: center;
+		background-color: $mainLightColor;
+		font-size: 0.9rem;
+		border: 1px solid $mainColor;
+		border-radius: 6px;
+		margin: 0px 13px;
+	}
+}
+
+.explanationStudyProcedureWrapper {
+	display: flex;
+}
+
+
+.explanationIteration {
+	font-size: 1rem;
+	color: $mainColor;
+	font-weight: $bold;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	margin-left: 10px;
+}
+
+.announcementWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 60px;
+	h3 {
+		font-weight: $regular;
+	}
+}
+
+.buttonWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	button {
+		background-color: $mainColor;
+		color: white;
+	}
+
+}

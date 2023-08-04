@@ -1,0 +1,18 @@
+{
+	"desc": "이 실험은 <b>두 가지 Study</b>로 나누어 진행됩니다.",
+	"study1": {
+		"desc": "• <b><span style='color: #8071FC;'>Study1</span></b>은 참가자님께 주어진 8가지 Task에 맞춰 기존의 ChatGPT와 대화합니다.",
+		"procedure": ["(a) Task 할당", "(b) 기존 ChatGPT와 Task에 맞는 대화", "(c) 시스템 관련 설문"],
+		"iteration": "8번 반복"
+	},
+	"study2": {
+		"desc": "• <b><span style='color: #8071FC;'>Study2</span></b>는 개발한 ChatGPT 페르소나 커스터마이징 시스템 CloChat을 사용하여 8가지 각 Task에 맞는 페르소나를 직접 만들고, 이 페르소나와 함께 대화할 것입니다. ",
+		"procedure": ["(a) Task 할당", "(b) 페르소나 커스터마이징", "(c) Clochat과 Task에 맞는 대화", "(d) 시스템/페르소나 관련 설문"],
+		"iteration": "8번 반복"
+	},
+	"announcement": {
+		"study1": "먼저 <b>기존의 ChatGPT와 진행하는 Study1</b>부터 진행하겠습니다.",
+		"study2": "<b>기존의 ChatGPT와 진행하는 Study1</b>이 종료되었습니다. 이제 <b><span style='color: #8071FC;'>Clochat(연구진이 개발한 ChatGPT 페르소나 커스터마이징 시스템)과 진행하는 Study2</span></b>를 진행하겠습니다."
+	},
+	"start": "실험 시작하기"
+}
