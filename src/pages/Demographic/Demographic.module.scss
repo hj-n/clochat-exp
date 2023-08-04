@@ -1,0 +1,110 @@
+@import '../../globalStyle.scss';
+
+.demoParent {
+	display: flex;
+}
+
+.demoOuterWrapper {
+	padding: 3vh;
+
+	h3 {
+		margin-top: 0px;
+		font-size: 1.6rem;
+		color: $mainColor;
+	}
+
+	.globalRoundedWrapper {
+		margin: 2vh 0vh;
+	}
+}
+
+
+.demoInnerWrapper {
+		padding: 3vh;
+}
+
+.demoOuterWrapperRight {
+	width: 55vw;
+}
+
+.demoOuterWrapperLeft {
+	width: 40vw;
+}
+
+.demoInputWrapper {
+
+	margin: 33px 0px;
+	margin-top: 0px;
+	display: flex;
+
+	label {
+		color: $grayColor;
+		font-size: 1.3rem;
+		padding: 9px 15px;
+	}
+
+	.optionLabel {
+		color: black;
+		font-size: 1.1rem;
+	}
+
+	input[type="text"] {
+		flex-grow: 1;
+		border: 1px solid $grayColor;
+		border-radius: 6px;
+		padding: 9px 10px;
+		font-size: 1.1rem;
+	}
+
+	.demoRadioWrapper {
+		display: flex;
+
+		.demoRadioOption {
+			margin: 9px 30px;
+			margin-left: 0px;
+		}
+	}
+}
+
+.demoInfoAlarm {
+	color: $grayColor;
+	font-size: 1.2rem;
+	margin-top: 40px;
+}
+
+.demoPrelimOptionWrapper {
+	display: flex;
+	justify-content: space-between;
+	padding: 5px 15px;
+}
+
+.demoPrelimQuestionWrapper {
+	margin-bottom: 27.5px;
+
+	h5 {
+		margin-top: 0px;
+	}
+
+	label {
+		padding: 9px 15px;
+		font-size: 1.1rem;
+	}
+}
+
+.buttonWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	button {
+		background-color: $mainColor;
+		color: white;
+	}
+
+	button[disabled] {
+		background-color: $mainLightColor;
+		color: white;
+		border: 1px dotted $mainColor;
+		cursor: not-allowed;
+	}
+}

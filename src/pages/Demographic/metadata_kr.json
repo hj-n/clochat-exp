@@ -1,0 +1,48 @@
+{
+	"basic": {
+		"title": "참가자 기본 정보",
+		"collect": [
+			{ "title": "성함", "type": "text", "id": "name" },
+			{ "title": "나이", "type": "text", "id": "age" },
+			{ "title": "번호", "type": "text", "id": "phone" },
+			{ "title": "성별", "type": "radio", "options": ["남자", "여자"], "values": ["m", "f"], "id": "gender" },
+			{ "title": "학력", "type": "radio", "options": ["고등학교 졸업", "학사", "석사", "박사"], "values": ["high", "bach", "master", "phd"], "id": "edu"},
+			{ "title": "직업", "type": "text", "id": "job" }
+		],
+		"desc": "실험 과정에서 녹화와 녹음으로 수집된 모든 데이터는 연구 목적으로만 사용되며, 개인 신상 정보는 절대 유출되지 않을 것을 약속드립니다."
+	},
+	"prelim": {
+		"title": "실험 주제 관련 사전 질문",
+		"collect": [
+			{
+				"question": "Q1. 귀하의 ChatGPT의 사용 빈도는 어느 정도 인가요?",
+				"id": "freq",
+				"options": [
+					"한 달에 한 번 이하", "2~3주에 한 번", "1주에 한 번", "2~3일에 한 번", "거의 매일"
+				]
+			},
+			{
+				"question": "Q2. 귀하는 생성형 인공지능(Generative AI)에 대해 얼마나 잘 알고 있다고 생각하시나요?",
+				"id": "gen_ai_friendliness",
+				"options": [
+					"많이 안다", "조금 안다", "보통이다", "거의 모른다", "전혀 모른다"
+				]
+			},
+			{
+				"question": "Q3. 귀하는 GPT와 같은 대형 언어 모델(Large Language Model, LLM)에 대해 얼마나 잘 알고 있다고 생각하시나요?",
+				"id": "llm_friendliness",
+				"options": [
+					"많이 안다", "조금 안다", "보통이다", "거의 모른다", "전혀 모른다"
+				]
+			},
+			{
+				"question": "Q4. 귀하는 인공지능 프롬프팅(Prompting)에 대해 얼마나 잘 알고 있다고 생각하시나요?",
+				"id": "prompting_friendliness",
+				"options": [
+					"많이 안다", "조금 안다", "보통이다", "거의 모른다", "전혀 모른다"
+				]
+			}
+		]
+	},
+	"submit": "제출"
+}
