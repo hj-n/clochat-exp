@@ -49,11 +49,11 @@ const Consent = () => {
 					</div>
 					<div className={styles.consentAnswerWrapper}>
 							<div className={styles.consentAnswerOption}>
-								<input type="radio" id="yes" name="consent" value="yes" onClick={() => setConsent(true)} checked={consent === true}/>
+								<input type="radio" id="yes" name="consent" value="yes" onChange={() => setConsent(true)} checked={consent === true}/>
 								<label htmlFor="yes">{metadata.answer.yes}</label>
 							</div>
 							<div className={styles.consentAnswerOption}>
-								<input type="radio" id="no" name="consent" value="no" onClick={() => setConsent(false)} checked={consent === false}/>
+								<input type="radio" id="no" name="consent" value="no" onChange={() => setConsent(false)} checked={consent === false}/>
 								<label htmlFor="no">{metadata.answer.no}</label>
 							</div>
 					</div>
