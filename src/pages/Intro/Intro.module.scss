@@ -1,0 +1,37 @@
+@import '../../globalStyle.scss';
+
+
+body {
+	background-color: $mainColor;
+	color: white;
+	text-align: center;
+}
+
+.introWrapper {
+	padding-top: 8vh;
+	display: flex;
+	flex-direction: column;
+	/* Stack the children vertically */
+	justify-content: space-between;
+	height: 78vh;
+}
+
+.titleWrapper {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+
+
+}
+
+.contactWrapper {
+	display: grid;
+	align-items: center;
+	justify-content: center;
+
+
+	p {
+		margin: 0px;
+	}
+}
+
