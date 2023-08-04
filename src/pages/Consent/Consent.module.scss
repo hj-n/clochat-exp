@@ -1,0 +1,74 @@
+@import '../../globalStyle.scss';
+
+.consentInnerWrapper {
+	padding: 3vh;
+
+}
+
+.protocolInnerWrapper {
+	padding-right: 10vw;
+
+
+
+	h4 {
+			margin-bottom: 3px;
+	}
+
+	p {
+		margin: 0px;
+	}
+}
+
+.stepWrapper {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px 30px;
+	padding-bottom: 0px;
+
+	.stepInnerWrapper {
+		padding: 20px 10px;
+		text-align: center;
+		background-color: $mainLightColor;
+		font-size: 0.9rem;
+		border: 1px solid $mainColor;
+		border-radius: 6px;
+	}
+}
+
+.buttonWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	button {
+		background-color: $mainColor;
+		color: white;
+	}
+
+	button[disabled] {
+		background-color: $mainLightColor;
+		color: white;
+		border: 1px dotted $mainColor;
+		cursor: not-allowed;
+	}
+}
+
+.consentQuestionWrapper {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+
+	p {
+		font-weight: $bold;
+		color: $mainColor;
+	}
+}
+
+.consentAnswerWrapper {
+	display: flex;
+	justify-content: center;
+
+	.consentAnswerOption {
+		margin: 0px 10px;
+	}
+}

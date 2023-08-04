@@ -1,0 +1,65 @@
+@import '../../globalStyle.scss';
+
+
+.purposeInnerWrapper {
+	padding: 3vh;
+
+	p {
+		margin: 0px;
+	}
+
+	.backgroundWrapper {
+		margin-bottom: 30px;
+
+		h4 {
+			margin-bottom: 3px;
+		}
+	}
+
+	.personaWrapper {
+		display: flex;
+
+		.personaPurple {
+			color: $mainColor;
+			margin-left: 4px;
+		}
+	}
+
+
+	.figureWrapper {
+		display: flex;
+		margin-top: 40px;
+		text-align: center;
+		justify-content: center;
+
+		.figureInnerWrapper {
+			height: 40vh;
+			margin: 0px 3vh;
+
+			img {
+				height: 35vh;
+			}
+
+			p {
+				font-size: 1rem;
+			}
+
+		}
+	}
+
+}
+
+
+.buttonWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	button {
+			background-color: $mainColor;
+			color: white;
+		}
+}
+
+
+

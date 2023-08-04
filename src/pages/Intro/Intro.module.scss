@@ -1,12 +1,6 @@
 @import '../../globalStyle.scss';
 
 
-body {
-	background-color: $mainColor;
-	color: white;
-	text-align: center;
-}
-
 .introWrapper {
 	padding-top: 8vh;
 	display: flex;
@@ -14,6 +8,8 @@ body {
 	/* Stack the children vertically */
 	justify-content: space-between;
 	height: 78vh;
+	color: white;
+	text-align: center;
 }
 
 .titleWrapper {
@@ -33,5 +29,18 @@ body {
 	p {
 		margin: 0px;
 	}
+
+
+.buttonWrapper {
+		button {
+			margin-top: 30px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			font-weight: $bold;
+		}
+
+	}	
 }
 

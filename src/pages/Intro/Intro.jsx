@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from "./Intro.module.scss";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 
 const Intro = () => {
 
-	const { lang = "kr" } = useParams();
-	
-
+	const { lang, id } = useParams();
 	const metadata = require(`./metadata_${lang}`)
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		document.body.style.backgroundColor = "#8071FC";
+		return () => { document.body.style.backgroundColor = "#F9FAFD"; }
+	});
 
 
 	return (
@@ -24,6 +28,9 @@ const Intro = () => {
 					{metadata.contact.list.map((item, index) => (
 						<p key={index}>{item}</p>
 					))}
+				</div>
+				<div className={styles.buttonWrapper}>
+						<button onClick={() => {navigate(`/${lang}/${id}/purpose`)}}>{metadata.next}</button>
 				</div>
 			</div>
 		</div>

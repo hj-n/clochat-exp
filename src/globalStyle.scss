@@ -5,7 +5,7 @@ $medium: 500;
 $bold: 700;
 
 
-$smallFontSize: 1rem;
+$smallFontSize: 1.2rem;
 $bigFontSize: 2.1 * $smallFontSize;
 
 $mainColor: #8071FC;
@@ -18,4 +18,34 @@ body {
 	font-family: 'Noto Sans', sans-serif;
 	font-weight: $regular;
 	font-size: $smallFontSize;
+	background-color: $mainBackGroundColor;
 }
+
+button {
+	width: 317px;
+	height: 40px;
+	border-radius: 10px;
+	border: 0px;
+	cursor: pointer;
+}
+
+button:hover {
+	font-weight: $bold;
+}
+
+.globalRoundedWrapper {
+	margin: 5vh;
+	background-color: white;
+	border-radius: 12px;
+}
+
+h5.helloWrapper {
+	margin-top: 0px;
+	font-weight: $regular;
+	color: white;
+
+	span {
+		background-color: $mainColor;
+	}
+}
+
