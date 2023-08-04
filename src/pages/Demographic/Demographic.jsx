@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import styles from "./Demographic.module.scss";
 import { useParams, useNavigate } from 'react-router-dom';
+import { updateParticipantDemographic } from "../../utils/communication";
 
 const Demographic = () => {
 
@@ -112,7 +113,10 @@ const Demographic = () => {
 				
 			</div>
 			<div className={styles.buttonWrapper}>
-				<button onClick={() => { navigate(`/${lang}/${id}/${type}/interview`) }} disabled={!finished}>{metadata.submit}</button>
+				<button onClick={() => { 
+					updateParticipantDemographic(id, basicDemo, prelimDemo);
+					navigate(`/${lang}/${id}/${type}/interview`);
+				}} disabled={!finished}>{metadata.submit}</button>
 			</div>
 		</div>
 	)

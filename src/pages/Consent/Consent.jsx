@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import styles from "./Consent.module.scss";
 import { useParams, useNavigate } from 'react-router-dom';
 
+import { registerParticipant } from '../../utils/communication';
+
 const Consent = () => {
 
 	const { lang, id, type } = useParams();
@@ -12,7 +14,8 @@ const Consent = () => {
 
 
 	const [consent, setConsent] = useState(null);
-	
+
+
 
 
 	return (
@@ -61,7 +64,10 @@ const Consent = () => {
 			</div>
 
 			<div className={styles.buttonWrapper}>
-				<button onClick={() => { navigate(`/${lang}/${id}/${type}/demographic`) }} disabled={!consent}>{metadata.submit}</button>
+				<button onClick={() => { 
+					registerParticipant(id);
+					navigate(`/${lang}/${id}/${type}/demographic`); 
+				}} disabled={!consent}>{metadata.submit}</button>
 			</div>
 		</div>
 	)
