@@ -7,7 +7,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Purpose = () => {
 
-	const { lang, id } = useParams();
+	const { lang, id, type } = useParams();
 
 	const metadata = require(`./metadata_${lang}`)
 	const backgroundDescRef = useRef(null);
@@ -49,7 +49,7 @@ const Purpose = () => {
 
 			</div>
 			<div className={styles.buttonWrapper}>
-					<button onClick={() => { navigate(`/${lang}/${id}/consent`) }}>{metadata.next}</button>
+					<button onClick={() => { navigate(`/${lang}/${id}/${type}/consent`) }}>{metadata.next}</button>
 			</div>
 		</div>
 	)

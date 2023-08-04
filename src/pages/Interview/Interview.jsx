@@ -7,7 +7,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Interview = () => {
 
-	const { lang, id } = useParams();
+	const { lang, id, type } = useParams();
 	const metadata = require(`./metadata_${lang}`);
 	const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const Interview = () => {
 			<div className={styles.interviewEndWrapper}>
 				<h2>{metadata.announcement}</h2>
 				<div className={styles.buttonWrapper}>
-					<button onClick={() => {navigate(`/${lang}/${id}/explanation/study1`)}}>{metadata.next}</button>
+					<button onClick={() => {navigate(`/${lang}/${id}/${type}/explanation/study1`)}}>{metadata.next}</button>
 				</div>
 			</div>
 		</div>

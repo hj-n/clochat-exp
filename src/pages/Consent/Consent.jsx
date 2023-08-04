@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Consent = () => {
 
-	const { lang, id } = useParams();
+	const { lang, id, type } = useParams();
 
 	const metadata = require(`./metadata_${lang}`)
 	const navigate = useNavigate();
@@ -61,7 +61,7 @@ const Consent = () => {
 			</div>
 
 			<div className={styles.buttonWrapper}>
-				<button onClick={() => { navigate(`/${lang}/${id}/demographic`) }} disabled={!consent}>{metadata.submit}</button>
+				<button onClick={() => { navigate(`/${lang}/${id}/${type}/demographic`) }} disabled={!consent}>{metadata.submit}</button>
 			</div>
 		</div>
 	)

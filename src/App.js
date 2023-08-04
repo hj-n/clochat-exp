@@ -12,12 +12,12 @@ function App() {
   return (
     <Router>
 			<Routes>
-				<Route path="/:lang/:id/" element={<Intro/>} />
-				<Route path="/:lang/:id/purpose" element={<Purpose/>} />
-				<Route path="/:lang/:id/consent" element={<Consent/>} />
-				<Route path="/:lang/:id/demographic" element={<Demographic/>} />
-				<Route path="/:lang/:id/interview" element={<Interview/>} />
-				<Route path="/:lang/:id/explanation/:step" element={<Explanation />} />
+				<Route path="/:lang/:id/:type/" element={<Intro/>} />
+				<Route path="/:lang/:id/:type/purpose" element={<Purpose/>} />
+				<Route path="/:lang/:id/:type/consent" element={<Consent/>} />
+				<Route path="/:lang/:id/:type/demographic" element={<Demographic/>} />
+				<Route path="/:lang/:id/:type/interview" element={<Interview/>} />
+				<Route path="/:lang/:id/:type/explanation/:step" element={<Explanation />} />
 			</Routes>
 		</Router>
   );

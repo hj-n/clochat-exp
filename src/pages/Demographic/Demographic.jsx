@@ -5,7 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Demographic = () => {
 
-	const { lang, id } = useParams();
+	const { lang, id, type } = useParams();
 	const metadata = require(`./metadata_${lang}`)
 
 	const navigate = useNavigate();
@@ -112,7 +112,7 @@ const Demographic = () => {
 				
 			</div>
 			<div className={styles.buttonWrapper}>
-				<button onClick={() => { navigate(`/${lang}/${id}/interview`) }} disabled={!finished}>{metadata.submit}</button>
+				<button onClick={() => { navigate(`/${lang}/${id}/${type}/interview`) }} disabled={!finished}>{metadata.submit}</button>
 			</div>
 		</div>
 	)

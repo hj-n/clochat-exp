@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Intro = () => {
 
-	const { lang, id } = useParams();
+	const { lang, id, type } = useParams();
 	const metadata = require(`./metadata_${lang}`)
 	const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const Intro = () => {
 					))}
 				</div>
 				<div className={styles.buttonWrapper}>
-						<button onClick={() => {navigate(`/${lang}/${id}/purpose`)}}>{metadata.next}</button>
+						<button onClick={() => {navigate(`/${lang}/${id}/${type}/purpose`)}}>{metadata.next}</button>
 				</div>
 			</div>
 		</div>
