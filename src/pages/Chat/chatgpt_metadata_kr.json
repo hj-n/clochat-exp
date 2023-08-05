@@ -1,0 +1,11 @@
+{
+	"placeholder": "메세지 보내기",
+	"icon": {
+		"user": "/assets/user_icon.png",
+		"system": "/assets/chatgpt_icon.png"
+	},
+	"rerun": "대화 다시하기",
+	"end": "대화 종료",
+	"endbutton": "대화 종료 시 눌러주세요"
+
+}

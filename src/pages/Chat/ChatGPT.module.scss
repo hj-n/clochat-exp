@@ -84,3 +84,105 @@ font-size: 1.0rem;
 		color: $grayColor;
 	}
 }
+
+.chatInteractionWrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 87vh;
+}
+
+.chatHistoryWrapper {
+
+	.chatHistoryUserItem {
+		background-color: white;
+		border-bottom: 1px solid $mainColor;
+	}
+
+	.chatHistorySystemItem {
+		background-color: $mainLightColor;
+	}
+
+	.chatHistoryItemContent {
+
+		padding: 30px 7vw;
+
+		display: flex;
+		img {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+
+		p {
+			align-items: center;
+			margin: 0px;
+			font-size: 1.0rem;
+			margin-top: 2px;
+			margin-left: 5px;
+			width: 58vw;
+		}
+	}
+}
+
+.chatInputWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 13vh;
+	margin-bottom: 30px;
+
+	.chatInputRerunButton {
+		background-color: white;
+		border: 1px solid $mainColor;
+		height: 50px;
+		width: 120px;
+		margin: 25px;
+		font-size: 1.0rem;
+	}
+
+	.chatInputEndButton {
+		background-color: $mainColor;
+		height: 50px;
+		width: 120px;
+		margin: 25px;
+		margin-left: 0px;
+		font-size: 1.0rem;
+	}
+
+	.chatInputTextAreaWrapper {
+
+		padding: 20px;
+		background-color: white;
+		display: flex;
+		align-items: center;
+
+		.chatInput {
+			width: 40vw;
+			font-size: 1.1rem;
+			font-family: 'Noto Sans', sans-serif;
+			align-items: center;
+			height: 60px;
+			overflow-y: scroll;
+			padding: 0;
+			border: 0px;
+			resize: none;
+			background-color: transparent;
+			
+
+		}
+
+		.chatInput:focus {
+			outline: none;
+
+		}
+
+		.chatInputButton {
+			width: 30px;
+			background-color: white;
+		}
+
+	}
+}
+
