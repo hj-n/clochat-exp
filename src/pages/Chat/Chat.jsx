@@ -8,18 +8,20 @@ const Chat = () => {
 
 	const { lang, id, type, step } = useParams();
 
-	const routing = {
+	const ChatGPT_Route = (<ChatGPT lang={lang} id={id} type={type} step={step} />)
+	const CloChat_Route = (<CloChat lang={lang} id={id} type={type} step={step} />)
+	const Routing = {
 		"type1": {
-			"study1": (<ChatGPT />), "study2": (<CloChat />)
+			"study1": ChatGPT_Route, "study2": CloChat_Route
 		},
 		"type2": {
-			"study1": (<CloChat />), "study2": (<ChatGPT />)
+			"study1": CloChat_Route, "study2": ChatGPT_Route
 		}
 	}
 
 	return (
 		<div>
-			{routing[type][step]}
+			{Routing[type][step]}
 		</div>
 	)
 
