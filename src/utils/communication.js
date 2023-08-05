@@ -27,3 +27,26 @@ export async function updateParticipantDemographic(id, basicDemo, prelimDemo) {
 		params: params
 	});
 }
+
+export async function getCurrentTaskIndices(id, studyType) {
+	const response = await axios.get(`${server}/currenttaskindices`, {
+		params: {
+			id: id,
+			studyType: studyType
+		}
+	});
+
+	return response.data;
+}
+
+export async function getTaskInfo(id, index, studyType) {
+	const response = await axios.get(`${server}/taskinfo`, {
+		params: {
+			id: id,
+			index: index,
+			studyType: studyType
+		}
+	});
+	console.log(response.data)
+	return response.data;
+}

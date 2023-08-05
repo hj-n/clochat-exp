@@ -1,0 +1,86 @@
+@import '../../globalStyle.scss';
+
+
+.chatgptWrapper {
+	display: flex;
+}
+
+.chatgptIndexWrapper {
+	height: 100vh;
+	width: 18vw;
+	background-color: white;
+	padding-left: 25px;
+	h2 {
+		margin: 15px 0px;
+		color: $mainColor;
+	}
+
+	p {
+		font-weight: $bold;
+		color: $grayColor;
+		font-size: 1.1rem;
+
+	}
+}
+
+.chatgptTask {
+font-size: 1.0rem;
+	background-color: $mainLightColor;
+	color: black;
+	padding: 14px 15px;
+	width: 14vw;
+	border-radius: 10px;
+	margin-bottom: 15px;
+}
+
+.chatgptCurrentTask {
+		font-size: 1.0rem;
+			background-color: $mainColor;
+			color: white;
+			padding: 14px 15px;
+			width: 14vw;
+			border-radius: 10px;
+			margin-bottom: 15px;
+}
+
+.chatgptChatWrapper {
+	flex-grow: 1;
+}
+
+.chatgptTaskDesc {
+	display: flex;
+	align-items: center;
+	height: 13vh;
+	border-bottom: 1px solid $mainColor;
+}
+
+.chatgptTaskDescTitle {
+	border-right: 3px solid $mainLightColor;
+	margin: 0px 1.3vw; 
+	padding-right: 0.7vw;
+	color: $mainColor;
+	width: 4vw;
+}
+
+.chatgptTaskDescInnerWrapper {
+	height: 10vh;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	margin: 0px 4vh;
+	border-radius: 12px;
+	flex-grow: 1;
+}
+
+.chatgptTaskDescContent {
+
+	width: 50vw;
+	h5 {
+		margin: 0px;
+	}
+	p {
+		margin: 0px;
+		font-size: 0.9rem;
+		color: $grayColor;
+	}
+}
