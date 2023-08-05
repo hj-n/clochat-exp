@@ -94,6 +94,9 @@ font-size: 1.0rem;
 
 .chatHistoryWrapper {
 
+	height: 69vh;
+	overflow-y: scroll;
+
 	.chatHistoryUserItem {
 		background-color: white;
 		border-bottom: 1px solid $mainColor;
@@ -122,6 +125,7 @@ font-size: 1.0rem;
 			margin-top: 2px;
 			margin-left: 5px;
 			width: 58vw;
+			white-space: pre-line;
 		}
 	}
 }
@@ -133,6 +137,12 @@ font-size: 1.0rem;
 	height: 13vh;
 	margin-bottom: 30px;
 
+	button:disabled {
+		cursor: not-allowed;
+		font-weight: $regular;
+	}
+
+
 	.chatInputRerunButton {
 		background-color: white;
 		border: 1px solid $mainColor;
@@ -142,6 +152,14 @@ font-size: 1.0rem;
 		font-size: 1.0rem;
 	}
 
+	.chatInputRerunButton:disabled {
+		background-color: white;
+		border: 1px solid $mainLightColor;
+		color: $mainLightColor;
+	}
+
+	
+
 	.chatInputEndButton {
 		background-color: $mainColor;
 		height: 50px;
@@ -150,6 +168,13 @@ font-size: 1.0rem;
 		margin-left: 0px;
 		font-size: 1.0rem;
 	}
+
+	.chatInputEndButton:disabled {
+		background-color: $mainLightColor;
+		color: white;
+	}
+
+	
 
 	.chatInputTextAreaWrapper {
 
@@ -181,6 +206,13 @@ font-size: 1.0rem;
 		.chatInputButton {
 			width: 30px;
 			background-color: white;
+		}
+
+		.chatInputButton:disabled {
+			img {
+				filter: opacity(0.3)
+			}
+
 		}
 
 	}

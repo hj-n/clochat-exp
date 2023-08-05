@@ -2,7 +2,8 @@
 	"placeholder": "메세지 보내기",
 	"icon": {
 		"user": "/assets/user_icon.png",
-		"system": "/assets/chatgpt_icon.png"
+		"assistant": "/assets/assistant_icon.jpeg",
+		"loading": "/assets/loading.gif"
 	},
 	"rerun": "대화 다시하기",
 	"end": "대화 종료",
