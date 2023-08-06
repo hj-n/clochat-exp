@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import styles from "./Survey.module.scss";
 
 import { useParams, useNavigate } from 'react-router-dom';
-import { getTaskInfo, postSurveyResult, postConversationStart } from "../../utils/communication";
+import { getTaskInfo, postSurveyResult, postConversationStart, checkStudyComplete } from "../../utils/communication";
 
 const Survey = () => {
 
 	const { lang, id, type, step, taskIndex, surveyType} = useParams();
 
 	const metadata  = require(`./metadata_${lang}`);
+	const navigate = useNavigate();
 
 	const questions = require(`./${surveyType}_question_${lang}`); 
 	const questions_2d = new Array(0);
@@ -41,7 +42,19 @@ const Survey = () => {
 	const submitSurvey = () => {
 		(async () => {
 			postSurveyResult(id, taskIndex, studyType, surveyType, surveyAnswer);
-			postConversationStart(id, taskIndex + 1, 0, "chatgpt");
+		})();
+		(async () => {
+			const isFinished = await checkStudyComplete(id, studyType, taskIndex);
+			if (!isFinished) {
+				await postConversationStart(id, parseInt(taskIndex) + 1, 0, "chatgpt");
+				navigate(`/${lang}/${id}/${type}/chat/${step}`);
+			}
+			else {
+				if (step === "study1" && type === "type1") {
+					navigate(`/${lang}/${id}/${type}/explanation/study2`)
+				}
+			}
+
 		})();
 	}
 

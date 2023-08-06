@@ -37,6 +37,8 @@ const ChatGPT = (props) => {
 		setTaskIndices(indices["taskIndices"]);
 		setTrialIndices(indices["trialIndices"]);
 
+		
+
 		const newTaskIndex = indices["taskIndices"][indices["taskIndices"].length - 1];
 		const newTrialIndex = indices["trialIndices"][newTaskIndex][indices["trialIndices"][newTaskIndex].length - 1];
 
@@ -100,7 +102,7 @@ const ChatGPT = (props) => {
 				<div className={styles.chatgptTaskList}>
 					{taskIndices.map((task, index) => {
 						return (
-							trialIndices[index].map((trial, index2) => {
+							trialIndices[task].map((trial, index2) => {
 								return (
 									<div 
 										key={`${index}_${index2}`} 

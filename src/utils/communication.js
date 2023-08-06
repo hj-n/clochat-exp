@@ -111,3 +111,15 @@ export async function postSurveyResult(id, taskIndex, studyType, surveyType, sur
 
 	return response.data;
 }
+
+export async function checkStudyComplete(id, studyType, taskIndex) {
+	const response = await axios.get(`${server}/checkstudycomplete`, {
+		params: {
+			id: id,
+			studyType: studyType,
+			taskIndex: taskIndex
+		}
+	});
+
+	return response.data.isComplete;
+}
