@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Survey.module.scss";
 
 import { useParams, useNavigate } from 'react-router-dom';
-import { getTaskInfo } from "../../utils/communication";
+import { getTaskInfo, postSurveyResult, postConversationStart } from "../../utils/communication";
 
 const Survey = () => {
 
@@ -38,6 +38,22 @@ const Survey = () => {
 		setSurveyAnswer(newSurveyAnswer);
 	}
 
+	const submitSurvey = () => {
+		(async () => {
+			postSurveyResult(id, taskIndex, studyType, surveyType, surveyAnswer);
+			postConversationStart(id, taskIndex + 1, 0, "chatgpt");
+		})();
+	}
+
+	const checkSurveyOngoing = () => {
+		for (let i = 0; i < surveyAnswer.length; i++) {
+			if (surveyAnswer[i] == null) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	useEffect(() => { fetchTaskInfo() }, [])
 	
 	return (
@@ -52,7 +68,10 @@ const Survey = () => {
 							<p>{taskDescription}</p>
 						</div>
 					</div>
-					<button>{metadata.submit}</button>
+					<button 
+						onClick={() => {submitSurvey();}}
+						disabled={checkSurveyOngoing()}
+					>{metadata.submit}</button>
 				</div>
 			</div>
 			<div className={styles.surveyWrapper}>

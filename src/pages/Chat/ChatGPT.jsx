@@ -77,10 +77,6 @@ const ChatGPT = (props) => {
 	}
 
 	const endConversation = () => {
-		(async () => {
-			await postConversationStart(id, currentTaskIndex + 1, 0, "chatgpt");
-		})();
-		console.log(currentTaskIndex);
 		navigate(`/${lang}/${id}/${type}/survey/${step}/${currentTaskIndex}/system`);
 	}
 

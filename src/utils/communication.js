@@ -93,3 +93,21 @@ export async function postConversationStart(id, taskIndex, trialIndex, studyType
 
 	return response.data;
 }
+
+export async function postSurveyResult(id, taskIndex, studyType, surveyType, surveyResult) {
+	const params = {
+		id: id,
+		taskIndex: taskIndex,
+		studyType: studyType,
+		surveyType: surveyType,
+		surveyResult: "[" + surveyResult.toString() + "]"
+	}
+
+	console.log(params)
+
+	const response = await axios.post(`${server}/postsurveyresult`, null, {
+		params: params
+	});
+
+	return response.data;
+}
