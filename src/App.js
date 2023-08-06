@@ -8,6 +8,7 @@ import Demographic from './pages/Demographic/Demographic';
 import Interview from './pages/Interview/Interview';
 import Explanation from './pages/Explanation/Explanation';
 import Chat from './pages/Chat/Chat';
+import Survey from './pages/Survey/Survey';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 				<Route path="/:lang/:id/:type/interview" element={<Interview/>} />
 				<Route path="/:lang/:id/:type/explanation/:step" element={<Explanation />} />
 				<Route path="/:lang/:id/:type/chat/:step" element={<Chat />} />
+				<Route path="/:lang/:id/:type/survey/:step/:taskIndex/:surveyType" element={<Survey />} />
 			</Routes>
 		</Router>
   );

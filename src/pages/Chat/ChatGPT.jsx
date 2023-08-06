@@ -2,13 +2,17 @@ import React, { useEffect, useState, useRef } from "react";
 
 import styles from "./ChatGPT.module.scss";
 
-import { getConversations, getCurrentTaskIndices, getTaskInfo, postConversation } from "../../utils/communication";
+import { getConversations, getCurrentTaskTrialIndices, getTaskInfo, postConversation, postConversationStart } from "../../utils/communication";
 
 import inputSvg from "../../assets/input.svg";
+
+import { useNavigate } from "react-router-dom";
 
 const ChatGPT = (props) => {
 
 	const { lang, id, type, step } = props;
+
+	const navigate = useNavigate();
 
 	const metadata = require(`./chatgpt_metadata_${lang}`);
 
@@ -18,7 +22,9 @@ const ChatGPT = (props) => {
 	const chatHistoryRef = useRef(null);
 
 	const [taskIndices, setTaskIndices] = useState([]);
+	const [trialIndices, setTrialIndices] = useState([]);
 	const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
+	const [currentTrialIndex, setCurrentTrialIndex] = useState(0);
 	const [taskTitle, setTaskTitle] = useState("");
 	const [taskDescription, setTaskDescription] = useState("");
 	const [inputText, setInputText] = useState("");
@@ -26,9 +32,17 @@ const ChatGPT = (props) => {
 	const [conversation, setConversation] = useState([])
 
 	const fetchTaskIndices = async () => {
-		const indices = await getCurrentTaskIndices(id, "chatgpt");
-		const { title, description } = await getTaskInfo(id, currentTaskIndex, "chatgpt"); 
-		setTaskIndices(indices);
+		const indices = await getCurrentTaskTrialIndices(id, "chatgpt");
+		const { title, description } = await getTaskInfo(id, currentTaskIndex, "chatgpt");
+		setTaskIndices(indices["taskIndices"]);
+		setTrialIndices(indices["trialIndices"]);
+
+		const newTaskIndex = indices["taskIndices"][indices["taskIndices"].length - 1];
+		const newTrialIndex = indices["trialIndices"][newTaskIndex][indices["trialIndices"][newTaskIndex].length - 1];
+
+
+		setCurrentTaskIndex(newTaskIndex);
+		setCurrentTrialIndex(newTrialIndex);
 		setTaskTitle(title);
 		setTaskDescription(description);
 	}
@@ -37,8 +51,8 @@ const ChatGPT = (props) => {
 		if (inputText == "") { return; }
 
 		(async () => {
-			await postConversation(id, currentTaskIndex, inputText, "chatgpt");
-			const newConversations = await getConversations(id, currentTaskIndex, "chatgpt");
+			await postConversation(id, currentTaskIndex, currentTrialIndex, inputText, "chatgpt");
+			const newConversations = await getConversations(id, currentTaskIndex, currentTrialIndex, "chatgpt");
 			setConversation(newConversations);
 			// scrol to bottom
 			chatInputButtonRef.current.disabled = false;
@@ -55,16 +69,28 @@ const ChatGPT = (props) => {
 
 	}
 
-	
+	const rerunConversation = () => {
+		(async () => {
+			await postConversationStart(id, currentTaskIndex, currentTrialIndex + 1, "chatgpt");
+			setCurrentTrialIndex(currentTrialIndex + 1);
+		})();
+	}
+
+	const endConversation = () => {
+		(async () => {
+			await postConversationStart(id, currentTaskIndex + 1, 0, "chatgpt");
+		})();
+		console.log(currentTaskIndex);
+		navigate(`/${lang}/${id}/${type}/survey/${step}/${currentTaskIndex}/system`);
+	}
 
 	useEffect(() => { 
 		fetchTaskIndices(); 
 		(async () => {
-			const newConversations = await getConversations(id, currentTaskIndex, "chatgpt");
-			console.log(newConversations)
+			const newConversations = await getConversations(id, currentTaskIndex, currentTrialIndex, "chatgpt");
 			setConversation(newConversations);
 		})();
-	}, [])
+	}, [currentTaskIndex, currentTrialIndex])
 
 	useEffect(() =>{
 		chatHistoryRef.current.scrollTop = chatHistoryRef.current.scrollHeight;
@@ -78,11 +104,21 @@ const ChatGPT = (props) => {
 				<div className={styles.chatgptTaskList}>
 					{taskIndices.map((task, index) => {
 						return (
-							<div key={index} className={index === currentTaskIndex ? styles.chatgptCurrentTask : styles.chatgptTask}>
-								{`Task ${parseInt(task) + 1}`}
-							</div>
-						)
-					})}
+							trialIndices[index].map((trial, index2) => {
+								return (
+									<div 
+										key={`${index}_${index2}`} 
+										className={
+											task === currentTaskIndex && trial === currentTrialIndex ? styles.chatgptCurrentTask : styles.chatgptTask
+										}
+									>
+										{`Task ${parseInt(task) + 1} (Trial ${parseInt(trial) + 1})`}
+									</div>
+								)
+							})
+					)})}
+						
+	
 				</div>
 			</div>
 			<div className={styles.chatgptChatWrapper}>
@@ -118,8 +154,8 @@ const ChatGPT = (props) => {
 								<img src={inputSvg} alt="input" />
 							</button>
 						</div>
-						<button className={styles.chatInputRerunButton} ref={chatRerunButtonRef}>{metadata.rerun}</button>
-						<button className={styles.chatInputEndButton} ref={chatEndButtonRef}>{metadata.end}</button>
+						<button className={styles.chatInputRerunButton} ref={chatRerunButtonRef} onClick={() => { rerunConversation(); }}>{metadata.rerun}</button>
+						<button className={styles.chatInputEndButton} ref={chatEndButtonRef} onClick={() => { endConversation(); }}>{metadata.end}</button>
 					</div>
 				</div>
 				

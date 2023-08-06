@@ -1,0 +1,107 @@
+@import '../../globalStyle.scss';
+
+.chatgptTaskDesc {
+	display: flex;
+	align-items: center;
+	height: 13vh;
+}
+
+.chatgptTaskDescTitleWrapper {
+	display: flex;
+	align-items: center;
+}
+
+.chatgptTaskDescTitle {
+	border-right: 3px solid $mainLightColor;
+	margin: 0px 1.3vw;
+	padding-right: 0.7vw;
+	color: $mainColor;
+	width: 4vw;
+}
+
+.chatgptTaskDescInnerWrapper {
+	height: 10vh;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	margin: 0px 4vh;
+	border-radius: 12px;
+	flex-grow: 1;
+	justify-content: space-between;
+
+	h3 {
+		color: $mainColor;
+		margin-left: 30px;
+	}
+
+	button {
+		background-color: $mainColor;
+		color: white;
+		border-radius: 6px;
+		padding: 13px 20px;
+		font-size: 0.9rem;
+		border: none;
+		margin-right: 30px;
+		width: 150px;
+	}
+}
+
+.chatgptTaskDescContent {
+
+	width: 50vw;
+
+
+
+	h5 {
+		margin: 0px;
+	}
+
+	p {
+		margin: 0px;
+		font-size: 0.9rem;
+		color: $grayColor;
+	}
+}
+
+.surveyWrapper {
+	display: flex;
+	justify-content: space-between;
+	margin: 0px 1vw;
+
+	.surveyInnerWrapper {
+		margin: 2vh 1vw;
+		background-color: white;
+		border-radius: 12px;
+		padding: 20px 40px;
+		width: 31vw;
+	}
+
+	.surveyQuestionWrapper {
+		margin-bottom: 3vh;
+		border-bottom: 2px solid $mainLightColor;
+		padding-bottom: 3vh;
+
+	}
+
+	.surveyQuestionButtonWrapper {
+		display: flex;
+		justify-content: space-between;
+
+		button {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+		}
+
+		.surveyQuestionButton {
+
+		}
+
+		.surveyQuestionButtonSelected {
+			background-color: $mainColor;
+			color: white;
+			font-weight: $bold;
+		}
+	}
+
+}

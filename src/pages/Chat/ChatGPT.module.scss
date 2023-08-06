@@ -31,16 +31,21 @@ font-size: 1.0rem;
 	width: 14vw;
 	border-radius: 10px;
 	margin-bottom: 15px;
+	border: 1px solid $mainLightColor;
 }
 
+
+
+
 .chatgptCurrentTask {
-		font-size: 1.0rem;
-			background-color: $mainColor;
-			color: white;
-			padding: 14px 15px;
-			width: 14vw;
-			border-radius: 10px;
-			margin-bottom: 15px;
+	font-size: 1.0rem;
+	background-color: $mainColor;
+	color: white;
+	padding: 14px 15px;
+	width: 14vw;
+	border-radius: 10px;
+	margin-bottom: 15px;
+	border: 1px solid $mainColor;
 }
 
 .chatgptChatWrapper {
@@ -195,7 +200,6 @@ font-size: 1.0rem;
 			resize: none;
 			background-color: transparent;
 			
-
 		}
 
 		.chatInput:focus {
