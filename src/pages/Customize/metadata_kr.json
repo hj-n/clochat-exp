@@ -5,9 +5,9 @@
 		{
 			"key": "기본 정보",
 			"id": "basic",
-			"input": [
+			"inputs": [
 				{ "property": "연령", "type": "text" },
-				{ "property": "성별", "type": "radio", "option": ["남자", "여자", "지정하지 않음"] },
+				{ "property": "성별", "type": "radio", "options": ["남자", "여자", "지정하지 않음"] },
 				{ "property": "이름", "type": "text" },
 				{ "property": "직업", "type": "text" },
 				{ "property": "지역", "type": "text" },
@@ -18,25 +18,25 @@
 		{
 			"key": "대화 스타일",
 			"id": "conversation",
-			"input": [
+			"inputs": [
 				{ "property": "대화 목적", "type": "text" },
-				{ "property": "호칭", "type": "radio", "option": ["개인적이고 비공식적인 호칭", "전문적인 공식 호칭", "호칭 사용 피하기"] },
-				{ "property": "대명사", "type": "radio", "option": ["내가", "제가"]},
+				{ "property": "호칭", "type": "radio", "options": ["개인적이고 비공식적인 호칭", "전문적인 공식 호칭", "호칭 사용 피하기"] },
+				{ "property": "대명사", "type": "radio", "options": ["내가", "제가"]},
 				{ "property": "성격", "type": "hybrid", "input": [
 					{ "type": "text" },
-					{ "type": "innerRadio", "option": ["개방적", "폐쇄적"] },
-					{ "type": "innerRadio", "option": ["성실", "비성실"] },
-					{ "type": "innerRadio", "option": ["외향적", "내향적"] },
-					{ "type": "innerRadio", "option": ["협조적", "적대적"] },
-					{ "type": "innerRadio", "option": ["낙관적", "비관적"] },
-					{ "type": "multipleRadio", "option": [
+					{ "type": "innerRadio", "options": ["개방적", "폐쇄적"] },
+					{ "type": "innerRadio", "options": ["성실", "비성실"] },
+					{ "type": "innerRadio", "options": ["외향적", "내향적"] },
+					{ "type": "innerRadio", "options": ["협조적", "적대적"] },
+					{ "type": "innerRadio", "options": ["낙관적", "비관적"] },
+					{ "type": "multipleRadio", "options": [
 						"유용한", "세심한", "효율적인", "똑똑한", "안내하는",
 						"섬세한", "공감해주는", "호기심있는", "유쾌한", "지지하는", "탐구적인",
 						"재미있는", "통통 튀는", "능청스러운", "귀여운", "이상한", "특이한", "카리스마 있는", "대담한", "창의적인", "차분한", "침착한", "지원하는", "배려심있는", "편견없는", "동기부여해주는", "예측적인", "협동적인", "업무지향적인", "효율적인", 
 						"능률적인", "똑똑한"
 					]}
 				]},
-				{ "property": "어투", "type": "multipleRadio", "option": [
+				{ "property": "어투", "type": "multipleRadio", "options": [
 					"공식적인", "캐쥬얼한", "명령형", "의문형", "대화지속성 없음", "관계지향적"
 				]}
 			]
@@ -45,14 +45,14 @@
 		{
 			"key": "이모티콘",
 			"id": "emoji",
-			"input": [
-				{ "property": "이모티콘", "type": "radio", "option": ["사용", "사용하지 않음"] } 
+			"inputs": [
+				{ "property": "이모티콘", "type": "radio", "options": ["사용", "사용하지 않음"] } 
 			]
 		},
 		{
 			"key": "전문 분야 및 관심사",
 			"id": "expertise",
-			"input": [
+			"inputs": [
 				{ "property": "전문 분야", "type": "text" },
 				{ "property": "관심사", "type": "text" }
 			]
@@ -60,7 +60,7 @@
 		{
 			"key": "기타",
 			"id": "else",
-			"input": [
+			"inputs": [
 				{ "property": "사회적 대화(잡담)", "type": "checkbox"},
 				{ "property": "메타 관계적 대화", "type": "checkbox"},
 				{ "property": "공감 교환", "type": "checkbox"},
@@ -100,5 +100,7 @@
 				]
 			}
 		]
-	}
+	},
+	"placeholder": "입력",
+	"save": "저장"
 }

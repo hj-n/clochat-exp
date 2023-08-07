@@ -13,10 +13,16 @@
 }
 
 .customizeMainPanel {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+
 	flex-grow: 1;
+}
+
+.customizeDefaultOuter {
+		display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			height: 100%;
 }
 
 .customizeDefaultWrapper {
@@ -125,4 +131,198 @@
 		.slider.round:before {
 			border-radius: 50%;
 		}
+}
+
+.chatgptTaskDesc {
+	display: flex;
+	align-items: center;
+	height: 13vh;
+	// border-bottom: 1px solid $mainColor;
+}
+
+.chatgptTaskDescTitle {
+	border-right: 3px solid $mainLightColor;
+	margin: 0px 1.3vw;
+	padding-right: 0.7vw;
+	color: $mainColor;
+	width: 4vw;
+}
+
+.chatgptTaskDescInnerWrapper {
+	height: 10vh;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	margin: 0px 2vw;
+	border-radius: 12px;
+	flex-grow: 1;
+}
+
+.chatgptTaskDescContent {
+
+	width: 50vw;
+
+	h5 {
+		margin: 0px;
+	}
+
+	p {
+		margin: 0px;
+		font-size: 0.9rem;
+		color: $grayColor;
+	}
+}
+
+.inputDialogueWrapper {
+	margin: 0vh wvw;
+	padding: 1vh 1vw;
+	background-color: white;
+
+	margin: 20px 2vw;
+
+
+	.inputDialogueTitleWrapper {
+		display: flex;
+		justify-content: space-between;
+		
+		margin: 20px 0px;
+		
+		h3 {
+			margin: 0px 20px;
+			color: $mainColor;
+		}
+
+		button {
+			background-color: $mainColor;
+			color: white;
+			border: none;
+			padding: 5px 10px;
+			cursor: pointer;
+			width: 140px;
+			font-size: 1.1rem;
+			margin: 0px 20px;
+		}
+
+	}
+
+	.inputDialogueInnerWrapperGrid {
+		margin-left: 20px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.inputDialogueElementWrapper {
+
+		padding: 20px 0px;
+		
+
+		h4 {
+			margin: 0px;
+			margin-right: 20px;
+			color: $mainColor;
+			margin-bottom: 10px;
+			font-size: 1.3rem;
+		}
+
+		textarea {
+			margin-left: 1px;
+			width: 30vw;
+			font-size: 1.1rem;
+			font-family: 'Noto Sans', sans-serif;
+			align-items: center;
+			height: 28px;
+			// overflow-y: scroll;
+			padding: 0;
+			// border: 0px;
+			resize: none;
+			border: 1px solid #ebebeb;
+			padding-left: 5px;
+
+			// background-color: transparent;
+		}
+
+		textarea:focus {
+			outline: none;
+		}
+
+		textarea::placeholder {
+			color: #ebebeb;
+		}
+
+		textarea:not(:placeholder-shown):valid {
+			border: 2px solid $mainColor;
+			color: $mainColor;
+			font-weight: $bold;
+		
+		}
+	}
+
+	.inputDialogueTextInputCheckboxWrapper {
+		display: flex;
+
+		.inputDialogueCheckbox {
+			width: 30px;
+			height: 30px;
+			background-color: #ebebeb;
+			color: white;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+		}
+
+		.inputDialogueCheckboxSelected {
+			width: 30px;
+				height: 30px;
+				background-color: $mainColor;
+				color: white;
+				justify-content: center;
+				align-items: center;
+				display: flex;
+				border: 1px solid $mainColor;
+
+		}
+	}
+
+}
+
+
+.inputDialogueRadioWrapper {
+	display: flex;
+
+	.inputDialogueRadioInnerWrapper {
+		display: flex;
+		align-items: center;
+		margin-right: 25px;
+	}
+}
+
+.circleButton {
+	width: 30px;
+	height: 30px;
+	background-color: #ebebeb;
+	color: white;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	margin-right: 10px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.circleButtonSelected {
+	width: 30px;
+	height: 30px;
+	background-color: $mainColor;
+	color: white;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	margin-right: 10px;
+	border-radius: 50%;
+	cursor: pointer;
+	font-weight: $bold;
+}
+
+.circleButtonText {
+	margin: 0px 5px;
 }
