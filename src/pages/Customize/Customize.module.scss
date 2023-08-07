@@ -43,13 +43,21 @@
 	}
 }
 
+.customizeToggleSelected {
+	background-color: $mainLightColor;
+	border-right: 4px solid $mainColor;
+
+}
+
 .customizeToggle {
 	/* The switch - the box around the slider */
 	display: flex;
 	align-items: center;
 
-	margin: 0px 0px;
-	padding: 20px 0px;
+	margin: 10px 0px;
+	padding: 10px 10px;
+
+	cursor: pointer;
 
 
 	h4 {

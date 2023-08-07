@@ -14,6 +14,7 @@ const Customize = () => {
 	const metadata = require(`./metadata_${lang}`);
 
 	const [currentCategory, setCurrentCategory] = useState({ id: null });
+	const [isCategoryFinished, setIsCategoryFinished] = useState(new Array(metadata.categories.length).fill(false));
 	const [taskTitle, setTaskTitle] = useState("");
 	const [taskDescription, setTaskDescription] = useState("");
 
@@ -54,12 +55,15 @@ const Customize = () => {
 					<div className={styles.customizeToggleWrapper}>
 						{metadata.categories.map((category, index) => {
 							return (
-								<div key={index} className={styles.customizeToggle}>
+								<div key={index} className={
+									currentCategory === category ? styles.customizeToggleSelected + " " + styles.customizeToggle :styles.customizeToggle
+								}
+								onClick= {() => {setCurrentCategory(category)}}
+								>
 									<label className={styles.switch}>
 										<input 
 											type="checkbox" 
-											checked={currentCategory.id === category.id} 
-											onChange={() => {setCurrentCategory(category)}}
+											checked={isCategoryFinished[index]} 
 										 />
 										<span className={styles.slider + " " + styles.round}></span>
 									</label>
