@@ -14,7 +14,7 @@
 
 .customizeMainPanel {
 
-	flex-grow: 1;
+	width: 80vw;
 }
 
 .customizeDefaultOuter {
@@ -375,4 +375,17 @@
 .inputDialogueMultiSelectRadioInnerWrapper {
 	padding-right: 25px;
 	padding-bottom: 30px;
+}
+
+.inputDialogueCheckboxWrapper {
+	display: flex;
+	margin-bottom: 30px;
+	align-items: center;
+
+	h4 {
+		margin: 0px;
+		color: $mainColor;
+		font-size: 1.3rem;
+		margin-right: 20px;
+	}
 }

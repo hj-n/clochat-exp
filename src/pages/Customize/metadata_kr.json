@@ -45,7 +45,7 @@
 			"key": "이모티콘",
 			"id": "emoji",
 			"inputs": [
-				{ "property": "이모티콘", "type": "radio", "options": ["사용", "사용하지 않음"] } 
+				{ "property": "챗봇의 이모티콘 사용 여부", "type": "radio", "options": ["사용", "사용하지 않음"] } 
 			]
 		},
 		{

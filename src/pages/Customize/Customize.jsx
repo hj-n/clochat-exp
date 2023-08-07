@@ -52,6 +52,10 @@ const Customize = () => {
 			delete newInputDialogue[categoryIndex][property];
 			setInputDialogue(newInputDialogue);
 		}
+		else if (value === false) {
+			delete newInputDialogue[categoryIndex][property];
+			setInputDialogue(newInputDialogue);
+		}
 		else {
 			newInputDialogue[categoryIndex][property] = value;
 			setInputDialogue(newInputDialogue);
@@ -189,6 +193,27 @@ const Customize = () => {
 		)
 	}
 
+	const renderCheckboxDialogue = (categoryIndex, input, index) => {
+		return (
+			<div className={styles.inputDialogueCheckboxWrapper} key={index}>
+				<h4>{input.property}</h4>
+				<button 
+					className={findInputFromDialogue(categoryIndex, input.property) === true ? styles.circleButtonSelected: styles.circleButton}
+					onClick={() => {
+						if (findInputFromDialogue(categoryIndex, input.property) === "" || 
+							findInputFromDialogue(categoryIndex, input.property) === false) {
+							updateInputDialogue(categoryIndex, input.property, true);
+						}
+						else {
+							updateInputDialogue(categoryIndex, input.property, false);
+						}
+					}}
+				>{"✓"}</button>
+
+			</div>
+		)
+	}
+
 
 	const renderInputDialogue = (categoryIndex) => {
 		return (
@@ -204,6 +229,8 @@ const Customize = () => {
 						{metadata.categories[categoryIndex].inputs.map((input, index) => {
 							if      (input.type === "text") { return renderTextDialogue(categoryIndex, input, index) }
 							else if (input.type === "radio") { return  renderRadioDialogue(categoryIndex, input, index) }
+							else if (input.type === "multipleRadio") { return renderMultiSelectRadioDialogue(categoryIndex, input, index, true) }
+							else if (input.type === "checkbox") { return renderCheckboxDialogue(categoryIndex, input, index) }
 						})}
 					</div>
 					<div className={styles.inputDialogueInnerWrapperFlex}>
@@ -229,20 +256,19 @@ const Customize = () => {
 		)
 	}
 
+	console.log(inputDialogue)
+
 	const renderSwitch = () => {
 		switch(currentCategory) {
 			case "basic": 
+			case "conversation":
+			case "emoji":
+			case "expertise":
+			case "else":
 				return (<div>
 					{renderTaskDescription()}
 					{renderInputDialogue(currentCategoryIndex)}
 				</div>)
-			case "conversation":
-				return (
-					<div>
-						{renderTaskDescription()}
-						{renderInputDialogue(currentCategoryIndex)}
-					</div>
-				)
 			default:
 				return (
 					<div className={styles.customizeDefaultOuter}>
