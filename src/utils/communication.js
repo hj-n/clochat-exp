@@ -143,6 +143,21 @@ export async function getPersonaDialogue(id, personaNum) {
 	});
 
 
+	console.log(response.data)
 
 	return response.data
+}
+
+export async function postPersonaDialogue(id, personaNum, dialogue, isCategoryFinished) {
+	const response = await axios.post(`${server}/postpersonadialogue`, null, {
+		params: {
+			id: id,
+			personaNum: personaNum,
+			dialogue: JSON.stringify(dialogue),
+			isCategoryFinished: JSON.stringify(isCategoryFinished)
+		}
+	});
+
+
+	return response.data;
 }

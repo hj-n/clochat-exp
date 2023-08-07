@@ -4,7 +4,7 @@ import styles from "./Customize.module.scss";
 
 import { useParams } from 'react-router-dom';
 
-import { getPersonaDialogue, getTaskInfo } from '../../utils/communication';
+import { getPersonaDialogue, getTaskInfo, postPersonaDialogue } from '../../utils/communication';
 import Procedure from '../Procedure/Procedure';
 
 const Customize = () => {
@@ -29,8 +29,13 @@ const Customize = () => {
 	}
 
 	const fetchDialogue = async () => {
-		const dialogue  = await getPersonaDialogue(id, personaNum);
+		const { dialogue, isCategoryFinished }  = await getPersonaDialogue(id, personaNum);
 		setInputDialogue(dialogue);
+		setIsCategoryFinished(isCategoryFinished);
+	}
+
+	const updateDialogue = () => {
+		postPersonaDialogue(id, personaNum, inputDialogue, isCategoryFinished);
 	}
 
 
@@ -229,7 +234,7 @@ const Customize = () => {
 				<div className={styles.inputDialogueWrapper}>
 					<div className={styles.inputDialogueTitleWrapper}>
 						<h3>{metadata.categories[categoryIndex].key}</h3>
-						<button onClick={() => { finishCategory(categoryIndex); }}>
+						<button onClick={() => { finishCategory(categoryIndex); updateDialogue(); }}>
 							{metadata.save}
 						</button>
 					</div>
