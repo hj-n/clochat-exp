@@ -25,7 +25,7 @@ function App() {
 				<Route path="/:lang/:id/:type/explanation_clochat/:step" element={ <ExplanationClochat /> } />
 				<Route path="/:lang/:id/:type/chat/:step" element={<Chat />} />
 				<Route path="/:lang/:id/:type/survey/:step/:taskIndex/:surveyType" element={<Survey />} />
-				<Route path="/:lang/:id/:type/customize/:step/:taskIndex" element={<Customize />} />
+				<Route path="/:lang/:id/:type/customize/:step/:taskIndex/:personaNum" element={<Customize />} />
 			</Routes>
 		</Router>
   );

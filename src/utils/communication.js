@@ -47,7 +47,6 @@ export async function getTaskInfo(id, index, studyType) {
 			studyType: studyType
 		}
 	});
-	console.log(response.data)
 	return response.data;
 }
 
@@ -122,4 +121,28 @@ export async function checkStudyComplete(id, studyType, taskIndex) {
 	});
 
 	return response.data.isComplete;
+}
+
+export async function postNewPersona(id, personaNum) {
+	const response = await axios.post(`${server}/postnewpersona`, null, {
+		params: {
+			id: id,
+			personaNum: personaNum
+		}
+	});
+
+	return response.data;
+}
+
+export async function getPersonaDialogue(id, personaNum) {
+	const response = await axios.get(`${server}/getpersonadialogue`, {
+		params: {
+			id: id,
+			personaNum: personaNum
+		}
+	});
+
+
+
+	return response.data
 }

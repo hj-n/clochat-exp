@@ -4,12 +4,12 @@ import styles from "./Customize.module.scss";
 
 import { useParams } from 'react-router-dom';
 
-import { getTaskInfo } from '../../utils/communication';
+import { getPersonaDialogue, getTaskInfo } from '../../utils/communication';
 import Procedure from '../Procedure/Procedure';
 
 const Customize = () => {
 
-	const { lang, id, type, step, taskIndex } = useParams();
+	const { lang, id, type, step, taskIndex, personaNum } = useParams();
 
 	const metadata = require(`./metadata_${lang}`);
 
@@ -27,6 +27,14 @@ const Customize = () => {
 		setTaskTitle(title);
 		setTaskDescription(description);
 	}
+
+	const fetchDialogue = async () => {
+		const dialogue  = await getPersonaDialogue(id, personaNum);
+		setInputDialogue(dialogue);
+	}
+
+
+
 
 	const renderTaskDescription = () => {
 		return (
@@ -256,7 +264,6 @@ const Customize = () => {
 		)
 	}
 
-	console.log(inputDialogue)
 
 	const renderSwitch = () => {
 		switch(currentCategory) {
@@ -285,7 +292,12 @@ const Customize = () => {
 		}
 	}
 
-	useEffect(() => { fetchTask(); }, []);
+	useEffect(() => { 
+		(async () => {
+			await fetchTask(); 
+			await fetchDialogue();
+		})();
+	}, []);
 
 	return (
 		<div>

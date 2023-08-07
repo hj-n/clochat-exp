@@ -5,6 +5,7 @@ import styles from "./ExplanationClochat.module.scss";
 import { useParams, useNavigate } from "react-router-dom";
 import parse from 'html-react-parser';
 import Procedure from "../Procedure/Procedure";
+import { postNewPersona } from "../../utils/communication";
 
 const ExplanationClochat = () => {
 
@@ -23,7 +24,12 @@ const ExplanationClochat = () => {
 		procedureDescRef.current.innerHTML = metadata.procedure.desc;
 	}, []);
 
-
+	const handleNext = () => {
+		(async () => {
+			await postNewPersona(id, 0);
+			navigate(`/${lang}/${id}/${type}/customize/${step}/0/0`)
+		})();
+	}
 
 
 
@@ -39,25 +45,6 @@ const ExplanationClochat = () => {
 				<div className={styles.descWrapper}>
 					<h4 ref={procedureDescRef}></h4>
 					<Procedure procedure={metadata.procedure} />
-					{/* <div className={styles.procedureWrapper}>
-						{metadata.procedure.steps.map((step, ind) => {
-							return (
-								<div className={styles.procedureStep} key={ind}>
-									<div className={styles.procedureStepTitle}>
-										<div className={styles.procedureStepTitleNumber}>{step.index}</div>
-										<h4>{step.title}</h4>
-									</div>
-									<div className={styles.procedureStepDesc}>
-										{step.desc.map((singleDesc, ind2) => {
-											return (
-												<li key={ind2}>{parse(singleDesc)}</li>
-											)
-										})}
-									</div>
-								</div>
-							)
-						})}
-					</div> */}
 					<div className={styles.procedureAnnouncementWrapper}>
 						{metadata.procedure.announcement.map((announce, index) => {
 							return (
@@ -68,7 +55,7 @@ const ExplanationClochat = () => {
 				</div>
 			</div>
 			<div className={styles.buttonWrapper}>
-				<button onClick={() => {navigate(`/${lang}/${id}/${type}/customize/${step}/0`)}}>{metadata.next}</button>
+				<button onClick={() => {handleNext();}}>{metadata.next}</button>
 			</div>
 		</div>
 	);
