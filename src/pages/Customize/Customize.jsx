@@ -48,7 +48,44 @@ const Customize = () => {
 
 	const updateInputDialogue = (categoryIndex, property, value) => {
 		const newInputDialogue = [...inputDialogue];
-		newInputDialogue[categoryIndex][property] = value;
+		if (value === "") {
+			delete newInputDialogue[categoryIndex][property];
+			setInputDialogue(newInputDialogue);
+		}
+		else {
+			newInputDialogue[categoryIndex][property] = value;
+			setInputDialogue(newInputDialogue);
+		}
+	}
+
+	const checkInputFromDialogueList = (categoryIndex, property, value) => {
+		if (inputDialogue[categoryIndex][property] !== undefined) {
+			if (inputDialogue[categoryIndex][property].includes(value)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	const updateInputDialogueList = (categoryIndex, property, value, isAdding) => {
+		const newInputDialogue = [...inputDialogue];
+		if (isAdding) {
+			if (newInputDialogue[categoryIndex][property] === undefined) {
+				newInputDialogue[categoryIndex][property] = [value];
+			}
+			else {
+				newInputDialogue[categoryIndex][property].push(value);
+			}
+		}
+		else {
+			const index = newInputDialogue[categoryIndex][property].indexOf(value);
+			if (index > -1) {
+				newInputDialogue[categoryIndex][property].splice(index, 1);
+			}
+			if (newInputDialogue[categoryIndex][property].length === 0) {
+				delete newInputDialogue[categoryIndex][property];
+			}
+		}
 		setInputDialogue(newInputDialogue);
 	}
 
@@ -62,6 +99,97 @@ const Customize = () => {
 		}
 	}
 
+
+	const renderTextDialogue = (categoryIndex, input, index, end=false, title=true) => {
+
+		return (
+			<div className={
+				(!end) ? styles.inputDialogueElementWrapper: styles.inputDialogueElementWrapperEnd + " " + styles.inputDialogueElementWrapper
+			} key={index}>
+				{title && <h4>{input.property}</h4>}
+				<div className={styles.inputDialogueTextInputCheckboxWrapper}>
+					<textarea
+						placeholder={metadata.placeholder}
+						value={findInputFromDialogue(categoryIndex, input.property)}
+						onChange={(e) => { updateInputDialogue(categoryIndex, input.property, e.target.value) }}
+					/>
+					<div className={
+						findInputFromDialogue(categoryIndex, input.property) !== "" ?
+							styles.inputDialogueCheckboxSelected :
+							styles.inputDialogueCheckbox
+					}>
+						{"✓"}
+					</div>
+				</div>
+			</div>
+		)
+	}
+
+	const renderRadioDialogue = (categoryIndex, input, index, underline=false, title=true, end=false) => {
+		return (
+			<div className={
+				(!end) ? styles.inputDialogueElementWrapper : styles.inputDialogueElementWrapperEnd + " " + styles.inputDialogueElementWrapper
+			} key={index}>
+				{title && <h4>{input.property}</h4>}
+				<div className={styles.inputDialogueRadioWrapper}>
+					{input.options.map((option, subIndex) => {
+						return (
+							<div className={styles.inputDialogueRadioInnerWrapper} key={subIndex}>
+								<button
+									className={
+										findInputFromDialogue(categoryIndex, input.property) === option ?
+											styles.circleButtonSelected :
+											styles.circleButton
+									}
+									onClick={() => {
+										if (findInputFromDialogue(categoryIndex, input.property) === option) {
+											updateInputDialogue(categoryIndex, input.property, "");
+										}
+										else {
+											updateInputDialogue(categoryIndex, input.property, option);
+										}
+									}}
+								>{"✓"}</button>
+								<p className={styles.circleButtonText}>{option}</p>
+							</div>
+						)
+					})}
+				</div>
+				{underline && <div className={styles.inputDialogueRadioUnderlineWrapper}></div>}
+			</div>
+		)
+	}
+
+	const renderMultiSelectRadioDialogue = (categoryIndex, input, index, title=false) => {
+
+		return (
+			<div className={styles.inputDialogueElementWrapper} key={index}>
+				{title && <h4>{input.property}</h4>}
+				<div className={styles.inputDialogueMultiSelectRadioWrapper}>
+					{input.options.map((option, subIndex) => {
+						return (
+							<div className={styles.inputDialogueMultiSelectRadioInnerWrapper} key={subIndex}>
+								<button 
+									className={checkInputFromDialogueList(categoryIndex, input.property, option) ? styles.circleButtonSelected : styles.circleButton}
+									onClick= {() => {
+										if (!checkInputFromDialogueList(categoryIndex, input.property, option)) {
+											updateInputDialogueList(categoryIndex, input.property, option, true);
+										}
+										else {
+											updateInputDialogueList(categoryIndex, input.property, option, false);
+										}
+									}}
+								>{"✓"}</button>
+								<p className={styles.circleButtonText}>{option}</p>
+							</div>
+					)})}
+
+				</div>
+			</div>
+		)
+	}
+
+
 	const renderInputDialogue = (categoryIndex) => {
 		return (
 			<div>
@@ -74,55 +202,22 @@ const Customize = () => {
 					</div>
 					<div className={styles.inputDialogueInnerWrapperGrid}>
 						{metadata.categories[categoryIndex].inputs.map((input, index) => {
-							if (input.type === "text") {
+							if      (input.type === "text") { return renderTextDialogue(categoryIndex, input, index) }
+							else if (input.type === "radio") { return  renderRadioDialogue(categoryIndex, input, index) }
+						})}
+					</div>
+					<div className={styles.inputDialogueInnerWrapperFlex}>
+						{metadata.categories[categoryIndex].inputs.map((input, index) => {
+							if (input.type === "hybrid") {
 								return (
-									<div className={styles.inputDialogueElementWrapper}>
-										<h4>{input.property}</h4>
-										<div className={styles.inputDialogueTextInputCheckboxWrapper}> 
-											<textarea 
-												placeholder={metadata.placeholder} 
-												value={findInputFromDialogue(categoryIndex, input.property)}
-												onChange={(e) => {updateInputDialogue(categoryIndex, input.property, e.target.value)}}
-											/>
-											<div className={
-												findInputFromDialogue(categoryIndex, input.property) !== "" ? 
-												styles.inputDialogueCheckboxSelected :
-												styles.inputDialogueCheckbox
-											}>
-												{"✓"}
-											</div>
-										</div>
-									</div>
-								)
-							}
-							else if (input.type === "radio") {
-								return (
-									<div className={styles.inputDialogueElementWrapper}>
-										<h4>{input.property}</h4>
-										<div className={styles.inputDialogueRadioWrapper}>
-											{input.options.map((option, index) => {
-												return (
-													<div className={styles.inputDialogueRadioInnerWrapper}>
-														<button
-															className={
-																findInputFromDialogue(categoryIndex, input.property) === option ? 
-																styles.circleButtonSelected :
-																styles.circleButton
-															}
-															onClick={() => {
-																if (findInputFromDialogue(categoryIndex, input.property) === option) {
-																	updateInputDialogue(categoryIndex, input.property, "");
-																}
-																else {
-																	updateInputDialogue(categoryIndex, input.property, option);
-																}
-															}}
-														>{"✓"}</button>
-														<p className={styles.circleButtonText}>{option}</p>
-													</div>
-												)
+									<div key={index}>
+										<h2>{input.property}</h2>
+										<div className={styles.inputDialogueSubInnerWrapperFlex}>
+											{input.input.map((subInput, subIndex) => {
+												if (subInput.type === "text") { return renderTextDialogue(categoryIndex, subInput, subIndex, true, false) }
+												else if (subInput.type === "radio") {return renderRadioDialogue(categoryIndex, subInput, subIndex, true, false)}
+												else if (subInput.type === "multipleRadio") {return renderMultiSelectRadioDialogue(categoryIndex, subInput, subIndex)}
 											})}
-
 										</div>
 									</div>
 								)
@@ -141,6 +236,13 @@ const Customize = () => {
 					{renderTaskDescription()}
 					{renderInputDialogue(currentCategoryIndex)}
 				</div>)
+			case "conversation":
+				return (
+					<div>
+						{renderTaskDescription()}
+						{renderInputDialogue(currentCategoryIndex)}
+					</div>
+				)
 			default:
 				return (
 					<div className={styles.customizeDefaultOuter}>
@@ -176,7 +278,8 @@ const Customize = () => {
 									<label className={styles.switch}>
 										<input 
 											type="checkbox" 
-											checked={isCategoryFinished[index]} 
+											checked={isCategoryFinished[index]}
+											onChange={() => {}} 
 										 />
 										<span className={styles.slider + " " + styles.round}></span>
 									</label>

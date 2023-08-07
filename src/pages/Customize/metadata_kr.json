@@ -19,20 +19,19 @@
 			"key": "대화 스타일",
 			"id": "conversation",
 			"inputs": [
-				{ "property": "대화 목적", "type": "text" },
 				{ "property": "호칭", "type": "radio", "options": ["개인적이고 비공식적인 호칭", "전문적인 공식 호칭", "호칭 사용 피하기"] },
 				{ "property": "대명사", "type": "radio", "options": ["내가", "제가"]},
 				{ "property": "성격", "type": "hybrid", "input": [
-					{ "type": "text" },
-					{ "type": "innerRadio", "options": ["개방적", "폐쇄적"] },
-					{ "type": "innerRadio", "options": ["성실", "비성실"] },
-					{ "type": "innerRadio", "options": ["외향적", "내향적"] },
-					{ "type": "innerRadio", "options": ["협조적", "적대적"] },
-					{ "type": "innerRadio", "options": ["낙관적", "비관적"] },
-					{ "type": "multipleRadio", "options": [
+					{ "property": "성격_자유성격", "type": "text" },
+					{ "property": "성격_개방성", "type": "radio", "options": ["개방적", "폐쇄적"] },
+					{ "property": "성격_성실성", "type": "radio", "options": ["성실", "비성실"] },
+					{ "property": "성격_외향성", "type": "radio", "options": ["외향적", "내향적"] },
+					{ "property": "성격_협조성", "type": "radio", "options": ["협조적", "적대적"] },
+					{ "property": "성격_낙관성", "type": "radio", "options": ["낙관적", "비관적"] },
+					{ "property": "성격_기타특징","type": "multipleRadio", "options": [
 						"유용한", "세심한", "효율적인", "똑똑한", "안내하는",
 						"섬세한", "공감해주는", "호기심있는", "유쾌한", "지지하는", "탐구적인",
-						"재미있는", "통통 튀는", "능청스러운", "귀여운", "이상한", "특이한", "카리스마 있는", "대담한", "창의적인", "차분한", "침착한", "지원하는", "배려심있는", "편견없는", "동기부여해주는", "예측적인", "협동적인", "업무지향적인", "효율적인", 
+						"재미있는", "통통 튀는", "능청스러운", "귀여운", "이상한", "특이한", "카리스마 있는", "대담한", "창의적인", "차분한", "침착한", "지원하는", "배려심있는", "편견없는", "동기부여해주는", "예측적인", "협동적인", "업무지향적인",
 						"능률적인", "똑똑한"
 					]}
 				]},

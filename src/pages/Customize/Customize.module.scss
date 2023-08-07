@@ -211,10 +211,15 @@
 		grid-template-columns: 1fr 1fr;
 	}
 
+	.inputDialogueElementWrapperEnd {
+		min-width: 100%;
+	}
+
 	.inputDialogueElementWrapper {
 
-		padding: 20px 0px;
-		
+		padding: 0px;
+		padding-bottom: 30px; 
+		margin-right: 30px;
 
 		h4 {
 			margin: 0px;
@@ -292,13 +297,13 @@
 	.inputDialogueRadioInnerWrapper {
 		display: flex;
 		align-items: center;
-		margin-right: 25px;
+		margin: 0px 12px;
 	}
 }
 
 .circleButton {
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
 	background-color: #ebebeb;
 	color: white;
 	justify-content: center;
@@ -310,8 +315,8 @@
 }
 
 .circleButtonSelected {
-	width: 30px;
-	height: 30px;
+	width: 25px;
+	height: 25px;
 	background-color: $mainColor;
 	color: white;
 	justify-content: center;
@@ -325,4 +330,49 @@
 
 .circleButtonText {
 	margin: 0px 5px;
+	font-size: 1.05rem;
+}
+
+
+.inputDialogueInnerWrapperFlex {
+	margin-left: 20px;
+	display: flex;
+
+	h2 {
+		margin: 0px;
+		margin-right: 20px;
+		color: $mainColor;
+		margin-bottom: 10px;
+		font-size: 1.3rem;
+	}
+
+	.inputDialogueSubInnerWrapperFlex {
+		display: flex;
+		// newline when overflow
+		flex-wrap: wrap;
+
+	}
+}
+
+.inputDialogueRadioUnderlineWrapper {
+	width: 100%;
+	margin: 6px;
+	border-bottom: 1px solid $grayColor;
+	padding: 0px;
+}
+
+.inputDialogueMultiSelectRadioInnerWrapper {
+	display: flex;
+	align-items: center;
+	margin: 0px 12px;
+}
+
+.inputDialogueMultiSelectRadioWrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.inputDialogueMultiSelectRadioInnerWrapper {
+	padding-right: 25px;
+	padding-bottom: 30px;
 }
