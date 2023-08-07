@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import { getPersonaDialogue, getTaskInfo, postPersonaDialogue } from '../../utils/communication';
 import Procedure from '../Procedure/Procedure';
+import Appearance from '../Appearance/Appearance';
 
 const Customize = () => {
 
@@ -283,6 +284,19 @@ const Customize = () => {
 					{renderTaskDescription()}
 					{renderInputDialogue(currentCategoryIndex)}
 				</div>)
+			case "appearance":
+				return (
+					<div>
+						{renderTaskDescription()}
+						<div>
+							<Appearance 
+								lang={lang}
+								id={id}
+								personaNum={personaNum}
+							/>
+						</div>
+					</div>
+				)
 			default:
 				return (
 					<div className={styles.customizeDefaultOuter}>
