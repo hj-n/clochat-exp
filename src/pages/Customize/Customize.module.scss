@@ -389,3 +389,21 @@
 		margin-right: 20px;
 	}
 }
+
+.customizeToggleSummary {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: 15px;
+	margin-bottom: 20px;
+
+	span {
+		margin-right: 10px;
+		padding: 3px 7px;
+		border: 1px solid $mainColor;
+		color: $mainColor;
+		border-radius: 15px;
+		margin-bottom: 5px;
+		font-size: 1.0rem;
+	}
+	
+}

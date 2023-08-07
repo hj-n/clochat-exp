@@ -269,6 +269,8 @@ const Customize = () => {
 		)
 	}
 
+	console.log(inputDialogue)
+
 
 	const renderSwitch = () => {
 		switch(currentCategory) {
@@ -313,20 +315,29 @@ const Customize = () => {
 					<div className={styles.customizeToggleWrapper}>
 						{metadata.categories.map((category, index) => {
 							return (
-								<div key={index} className={
-									currentCategory === category.id ? styles.customizeToggleSelected + " " + styles.customizeToggle :styles.customizeToggle
-								}
-								onClick= {() => {setCurrentCategory(category.id); setCurrentCategoryIndex(index);}}
-								>
-									<label className={styles.switch}>
-										<input 
-											type="checkbox" 
-											checked={isCategoryFinished[index]}
-											onChange={() => {}} 
-										 />
-										<span className={styles.slider + " " + styles.round}></span>
-									</label>
-									<h4>{category.key}</h4>
+								<div key={index}>
+									<div  className={
+										currentCategory === category.id ? styles.customizeToggleSelected + " " + styles.customizeToggle :styles.customizeToggle
+									}
+									onClick= {() => {setCurrentCategory(category.id); setCurrentCategoryIndex(index);}}
+									>
+										<label className={styles.switch}>
+											<input 
+												type="checkbox" 
+												checked={isCategoryFinished[index]}
+												onChange={() => {}} 
+											/>
+											<span className={styles.slider + " " + styles.round}></span>
+										</label>
+										<h4>{category.key}</h4>
+									</div>
+									<div className={styles.customizeToggleSummary}>
+										{Object.keys(inputDialogue[index]).map((key, index2) => {
+											return (
+												<span>{inputDialogue[index][key] === true ? key : inputDialogue[index][key]}</span>
+											)
+										})}
+									</div>
 								</div>
 							)
 						})}
