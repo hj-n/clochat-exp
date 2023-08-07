@@ -56,7 +56,11 @@ const Customize = () => {
 							return (
 								<div key={index} className={styles.customizeToggle}>
 									<label className={styles.switch}>
-										<input type="checkbox" />
+										<input 
+											type="checkbox" 
+											checked={currentCategory.id === category.id} 
+											onChange={() => {setCurrentCategory(category)}}
+										 />
 										<span className={styles.slider + " " + styles.round}></span>
 									</label>
 									<h4>{category.key}</h4>
