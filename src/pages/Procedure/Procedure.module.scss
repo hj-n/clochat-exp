@@ -1,0 +1,50 @@
+@import '../../globalStyle.scss';
+
+.procedureWrapper {
+	display: flex;
+	justify-content: space-between;
+
+	.procedureStep {
+		border: 1px solid $grayColor;
+		border-radius: 10px;
+		width: 27%;
+		padding: 1.5vh 1.5vw;
+
+	}
+
+	.procedureStepTitle {
+		display: flex;
+		align-items: center;
+
+		h4 {
+			margin: 0px;
+			margin-left: 20px;
+		}
+	}
+
+	.procedureStepTitleNumber {
+		background-color: #EBEBEB;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: $bold;
+	}
+
+	.procedureStepDesc {
+
+		padding: 1vh 15px;
+
+		li {
+			color: $grayColor;
+			text-decoration: underline;
+			text-indent: -1.3em;
+			padding-left: 1em;
+			margin-bottom: 10px;
+		}
+	}
+
+}
+

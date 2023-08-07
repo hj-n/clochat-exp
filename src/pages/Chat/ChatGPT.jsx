@@ -96,7 +96,7 @@ const ChatGPT = (props) => {
 
 	return (
 		<div className={styles.chatgptWrapper}>
-			<div className={styles.chatgptIndexWrapper}>
+			<div className={styles.leftBannerWrapper}>
 				<h2>ChatGPT</h2>
 				<p>Chat</p>
 				<div className={styles.chatgptTaskList}>

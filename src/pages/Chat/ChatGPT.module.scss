@@ -5,23 +5,7 @@
 	display: flex;
 }
 
-.chatgptIndexWrapper {
-	height: 100vh;
-	width: 18vw;
-	background-color: white;
-	padding-left: 25px;
-	h2 {
-		margin: 15px 0px;
-		color: $mainColor;
-	}
 
-	p {
-		font-weight: $bold;
-		color: $grayColor;
-		font-size: 1.1rem;
-
-	}
-}
 
 .chatgptTask {
 font-size: 1.0rem;

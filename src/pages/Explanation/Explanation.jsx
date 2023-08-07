@@ -24,6 +24,17 @@ const Explanation = () => {
 
 	const studyList = type == "type1" ? [metadata.chatgpt, metadata.clochat] : [metadata.clochat, metadata.chatgpt];
 
+	const nextLink = {
+		"type1": { 
+			"study1": `/${lang}/${id}/${type}/chat/${step}`,
+			"study2": `/${lang}/${id}/${type}/explanation_clochat/${step}`
+		},
+		"type2": {
+			"study1": `/${lang}/${id}/${type}/explanation_clochat/${step}`,
+			"study2": `/${lang}/${id}/${type}/chat/${step}`
+		}
+	}[type][step];
+
 
 
 
@@ -57,7 +68,7 @@ const Explanation = () => {
 				<h3 ref={announcementRef}></h3>
 			</div>
 			<div className={styles.buttonWrapper}>
-				<button onClick={() => { navigate(`/${lang}/${id}/${type}/chat/${step}`) }}>{metadata.start}</button>
+				<button onClick={() => { navigate(nextLink) }}>{metadata.start}</button>
 			</div>
 		</div>
 	)

@@ -1,0 +1,30 @@
+@import '../../globalStyle.scss';
+
+.descWrapper {
+	padding: 1vh 2vw;
+
+
+}
+
+
+.procedureAnnouncementWrapper {
+	padding: 3vh 0px;
+
+	li {
+		margin-bottom: 5px;
+	}
+}
+
+.buttonWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	button {
+		background-color: $mainColor;
+		color: white;
+		font-size: 1rem;
+	}
+
+
+}
