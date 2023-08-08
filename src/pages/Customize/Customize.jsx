@@ -369,7 +369,6 @@ const Customize = () => {
 									</div>
 									<div className={styles.customizeToggleSummary}>
 										{Object.keys(inputDialogue[index]).map((key, index2) => {
-
 											if (inputDialogue[index][key] === true) {
 												return (
 													<span key={index2}>{key}</span>
@@ -386,10 +385,10 @@ const Customize = () => {
 														<span key={index3}>{item}</span>
 													)
 												})
-												
 											}
 										})}
 									</div>
+
 								</div>
 							)
 						})}
