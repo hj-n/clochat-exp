@@ -23,6 +23,9 @@ const Customize = () => {
 		metadata.categories.map((category, index) => { return {}})
 	)
 
+	const [saveAppearance, setSaveAppearance] = useState(false);
+	const [updateAppearance, setUpdateAppearance] = useState(null);
+
 	const fetchTask = async () => {
 		const { title, description } = await getTaskInfo(id, taskIndex, "clochat");
 		setTaskTitle(title);
@@ -228,11 +231,21 @@ const Customize = () => {
 		)
 	}
 
-	const renderInputDialogueTitle = (categoryIndex) => {
+	const renderInputDialogueTitle = (categoryIndex, disabler=null, additionalUpdateDialogue=null) => {
+		console.log(disabler)
 		return (
 			<div className={styles.inputDialogueTitleWrapper}>
 				<h3>{metadata.categories[categoryIndex].key}</h3>
-				<button onClick={() => { finishCategory(categoryIndex); updateDialogue(); }}>
+				<button 
+					onClick={() => { 
+						finishCategory(categoryIndex); 
+						updateDialogue(); 
+						if (additionalUpdateDialogue !== null) {
+							additionalUpdateDialogue();
+						}
+					}}
+					disabled={disabler === null ? false : disabler}
+				>
 					{metadata.save}
 				</button>
 			</div>
@@ -296,12 +309,13 @@ const Customize = () => {
 						{renderTaskDescription()}
 						<div>
 							<div className={styles.inputDialogueWrapper}>
-								{renderInputDialogueTitle(currentCategoryIndex)}
+								{renderInputDialogueTitle(currentCategoryIndex, !saveAppearance, updateAppearance)}
 								<Appearance 
 									lang={lang}
 									id={id}
 									personaNum={personaNum}
-
+									setSaveAppearance={setSaveAppearance}
+									setUpdateAppearance={setUpdateAppearance}
 								/>
 							</div>
 						</div>

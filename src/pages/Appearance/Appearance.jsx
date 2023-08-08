@@ -1,15 +1,78 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./Appearance.module.scss";
 import parse from 'html-react-parser';
+import { getGeneratedImageUrls } from "../../utils/communication";
 
 const Appearance = (props) => {
 
-	const { lang, id, personaNum } = props;
+	const { lang, id, personaNum, setSaveAppearance, setUpdateAppearance } = props;
 
 	const metadata = require(`./metadata_${lang}`);
 
-	const [prompt, setPrompt] = React.useState("");
+	const [prompt, setPrompt] = useState("");
+	const [status, setStatus] = useState("idle"); // idle, loading, success
+	const [promptEn, setPromptEn] = useState("");
+	const [urls, setUrls] = useState([]);
+	const [selectedUrlIndex, setSelectedUrlIndex] = useState(-1);
+
+	const updateAppearance = () => {
+		console.log("updateAppearance");
+	}
+
+
+
+	const renderGenerationStatus = () => {
+		switch (status) {
+			case "idle": 
+				return (
+					<div></div>
+				)
+			case "loading":
+				return (
+					<div className={styles.appearanceSelectWrapper}>
+						<div>
+							<img src={metadata.loading_img} width={"60"} />
+							<p>{metadata.loading}</p>
+						</div>
+					</div>
+				)
+			case "success":
+				return (<div>
+					<div className={styles.appearanceImageWrapper}>
+						{urls.map((url, index) => {
+							return (
+								<img 
+									src={url} key={index} 
+									onClick={() => {
+										setSelectedUrlIndex(index);
+										setSaveAppearance(true);
+									}}
+									className={index === selectedUrlIndex ? styles.appearanceImgSelected : ""}
+								/>
+							)
+						})}
+					</div>
+				</div>)
+		}
+	}
+
+	const generation = () => {
+		setStatus("loading");
+		setSelectedUrlIndex(-1);
+		setUrls([]);
+		(async () => {
+			const data = await getGeneratedImageUrls(prompt);
+			setPromptEn(data.promptEn);
+			setUrls(data.imageUrls);
+			setStatus("success");
+		})();
+	}
+
+	useEffect(() => {
+		setUpdateAppearance(updateAppearance);
+	})
+
 
 	return (
 		<div>
@@ -22,32 +85,31 @@ const Appearance = (props) => {
 						)
 					})}
 				</div>
-				<div className={styles.inputDiaglogueElementOuterWrapper}>
+				<div className={styles.inputDialogueElementOuterWrapper}>
 					<div className={styles.inputDialogueElementWrapper}>
-						<div className={styles.inputDialogueTextInputCheckboxWrapper}>
-							<textarea
-								placeholder={metadata.placeholder}
-								value={prompt}
-								onChange={(e) => { setPrompt(e.target.value) }}
-							/>
-							<div className={
-								prompt !== "" ?
-									styles.inputDialogueCheckboxSelected :
-									styles.inputDialogueCheckbox
-							}>
-								{"✓"}
+						<div className={styles.inputDialogueGenerationWrapper}>
+							<div className={styles.inputDialogueTextInputCheckboxWrapper}>
+								<textarea
+									placeholder={metadata.placeholder}
+									value={prompt}
+									onChange={(e) => { setPrompt(e.target.value) }}
+								/>
+								<div className={
+									prompt !== "" ?
+										styles.inputDialogueCheckboxSelected :
+										styles.inputDialogueCheckbox
+								}>
+									{"✓"}
+								</div>
+							</div>
+							<div className={styles.inputDialogueButtonWrapper}>
+								<button onClick={() => { generation(); }}>{metadata.generation}</button>
 							</div>
 						</div>
 					</div>
 				</div>
 				<h4>{metadata.select}</h4>
-				<div className={styles.appearanceSelectWrapper}>
-					<div>
-						<img src={metadata.loading_img} width={"60"}/>
-						<p>{metadata.loading}</p> 
-					</div>
-				</div>
-
+				{renderGenerationStatus()}
 			</div>
 		</div>
 	);

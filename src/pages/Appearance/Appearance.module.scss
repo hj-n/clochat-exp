@@ -15,12 +15,29 @@
 	}
 }
 
-.inputDiaglogueElementOuterWrapper {
+.inputDialogueElementOuterWrapper {
 
 	margin-top: 20px;
 
 	textarea {
-		width: 90%;
+		width: 100%;
+	}
+
+	.inputDialogueButtonWrapper {
+
+		display: flex;
+		justify-content: right;
+
+		button {
+			background-color: $mainColor;
+			color: white;
+			border: none;
+			padding: 5px 10px;
+			cursor: pointer;
+			width: 140px;
+			margin: 20px 0px;
+			font-size: 1.1rem;
+		}
 	}
 }
 
@@ -32,4 +49,22 @@
 	align-items: center;
 	height: 30vh;
 	border-radius: 30px;
+}
+
+.appearanceImageWrapper {
+	margin: 5px 0px;
+
+	display: flex;
+	justify-content: space-between;
+
+	img {
+		width: 22%;
+		border-radius: 20px;
+		border: 2px solid $mainLightColor;
+		cursor: pointer;
+	}
+
+	.appearanceImgSelected {
+		border: 4px solid $mainColor;	
+	}
 }

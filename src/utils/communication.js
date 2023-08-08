@@ -161,3 +161,17 @@ export async function postPersonaDialogue(id, personaNum, dialogue, isCategoryFi
 
 	return response.data;
 }
+
+export async function getGeneratedImageUrls(prompt) {
+	const response = await axios.get(`${server}/getgeneratedimageurls`, {
+		params: {
+			prompt: prompt
+		}
+	});
+
+	return response.data;
+}
+
+export async function postPersonaImg(id, personaNum, promptEn, urls, urlIndex) {
+	
+}
