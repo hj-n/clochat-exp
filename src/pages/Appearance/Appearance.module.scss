@@ -1,0 +1,35 @@
+@import '../../globalStyle.scss';
+
+
+.appearanceWrapper {
+	padding: 1vh 1vw;
+
+	h4 { 
+		margin: 0px;
+		margin-bottom: 15px;
+		color: $mainColor;
+	}
+
+	li {
+		margin: 5px 0px;
+	}
+}
+
+.inputDiaglogueElementOuterWrapper {
+
+	margin-top: 20px;
+
+	textarea {
+		width: 90%;
+	}
+}
+
+.appearanceSelectWrapper {
+	margin: 5px 0px;
+	background-color: $mainLightColor;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 30vh;
+	border-radius: 30px;
+}

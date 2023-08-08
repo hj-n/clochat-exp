@@ -228,17 +228,23 @@ const Customize = () => {
 		)
 	}
 
+	const renderInputDialogueTitle = (categoryIndex) => {
+		return (
+			<div className={styles.inputDialogueTitleWrapper}>
+				<h3>{metadata.categories[categoryIndex].key}</h3>
+				<button onClick={() => { finishCategory(categoryIndex); updateDialogue(); }}>
+					{metadata.save}
+				</button>
+			</div>
+		)	
+	}
+
 
 	const renderInputDialogue = (categoryIndex) => {
 		return (
 			<div>
 				<div className={styles.inputDialogueWrapper}>
-					<div className={styles.inputDialogueTitleWrapper}>
-						<h3>{metadata.categories[categoryIndex].key}</h3>
-						<button onClick={() => { finishCategory(categoryIndex); updateDialogue(); }}>
-							{metadata.save}
-						</button>
-					</div>
+					{renderInputDialogueTitle(categoryIndex)}
 					<div className={styles.inputDialogueInnerWrapperGrid}>
 						{metadata.categories[categoryIndex].inputs.map((input, index) => {
 							if      (input.type === "text") { return renderTextDialogue(categoryIndex, input, index) }
@@ -289,13 +295,17 @@ const Customize = () => {
 					<div>
 						{renderTaskDescription()}
 						<div>
-							<Appearance 
-								lang={lang}
-								id={id}
-								personaNum={personaNum}
-							/>
+							<div className={styles.inputDialogueWrapper}>
+								{renderInputDialogueTitle(currentCategoryIndex)}
+								<Appearance 
+									lang={lang}
+									id={id}
+									personaNum={personaNum}
+
+								/>
+							</div>
 						</div>
-					</div>
+					</div>	
 				)
 			default:
 				return (

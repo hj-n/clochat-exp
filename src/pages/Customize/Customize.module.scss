@@ -185,7 +185,10 @@
 		display: flex;
 		justify-content: space-between;
 		
-		margin: 20px 0px;
+		margin: 5px 0px;
+		padding: 15px 0px;
+		margin-bottom: 15px;
+		border-bottom: 1px solid $mainLightColor;
 		
 		h3 {
 			margin: 0px 20px;
@@ -215,78 +218,6 @@
 		min-width: 100%;
 	}
 
-	.inputDialogueElementWrapper {
-
-		padding: 0px;
-		padding-bottom: 30px; 
-		margin-right: 30px;
-
-		h4 {
-			margin: 0px;
-			margin-right: 20px;
-			color: $mainColor;
-			margin-bottom: 10px;
-			font-size: 1.3rem;
-		}
-
-		textarea {
-			margin-left: 1px;
-			width: 30vw;
-			font-size: 1.1rem;
-			font-family: 'Noto Sans', sans-serif;
-			align-items: center;
-			height: 28px;
-			// overflow-y: scroll;
-			padding: 0;
-			// border: 0px;
-			resize: none;
-			border: 1px solid #ebebeb;
-			padding-left: 5px;
-
-			// background-color: transparent;
-		}
-
-		textarea:focus {
-			outline: none;
-		}
-
-		textarea::placeholder {
-			color: #ebebeb;
-		}
-
-		textarea:not(:placeholder-shown):valid {
-			border: 2px solid $mainColor;
-			color: $mainColor;
-			font-weight: $bold;
-		
-		}
-	}
-
-	.inputDialogueTextInputCheckboxWrapper {
-		display: flex;
-
-		.inputDialogueCheckbox {
-			width: 30px;
-			height: 30px;
-			background-color: #ebebeb;
-			color: white;
-			justify-content: center;
-			align-items: center;
-			display: flex;
-		}
-
-		.inputDialogueCheckboxSelected {
-			width: 30px;
-				height: 30px;
-				background-color: $mainColor;
-				color: white;
-				justify-content: center;
-				align-items: center;
-				display: flex;
-				border: 1px solid $mainColor;
-
-		}
-	}
 
 }
 
