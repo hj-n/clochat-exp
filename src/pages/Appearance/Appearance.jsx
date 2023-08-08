@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 
 import styles from "./Appearance.module.scss";
 import parse from 'html-react-parser';
-import { getGeneratedImageUrls } from "../../utils/communication";
+import { getGeneratedImageUrls, postPersonaImg, getPersonaInfo } from "../../utils/communication";
 
 const Appearance = (props) => {
 
-	const { lang, id, personaNum, setSaveAppearance, setUpdateAppearance } = props;
+	const { lang, id, personaNum, setSaveAppearance } = props;
 
 	const metadata = require(`./metadata_${lang}`);
 
@@ -16,8 +16,23 @@ const Appearance = (props) => {
 	const [urls, setUrls] = useState([]);
 	const [selectedUrlIndex, setSelectedUrlIndex] = useState(-1);
 
+
+
+	const restallAppearance = () => {
+		(async () => {
+			const data = await getPersonaInfo(id, personaNum);
+			console.log(data);
+			setPrompt(data.promptKr == null ? "" : data.promptKr);
+			setPromptEn(data.promptEn);
+			setUrls(data.imgUrls);
+			setSelectedUrlIndex(data.imgUrlIndex);
+			setStatus("success");
+		})();
+	}
+
+
 	const updateAppearance = () => {
-		console.log("updateAppearance");
+		postPersonaImg(id, personaNum, prompt, promptEn, urls, selectedUrlIndex);
 	}
 
 
@@ -47,6 +62,7 @@ const Appearance = (props) => {
 									onClick={() => {
 										setSelectedUrlIndex(index);
 										setSaveAppearance(true);
+										console.log(selectedUrlIndex, urls);
 									}}
 									className={index === selectedUrlIndex ? styles.appearanceImgSelected : ""}
 								/>
@@ -70,8 +86,8 @@ const Appearance = (props) => {
 	}
 
 	useEffect(() => {
-		setUpdateAppearance(updateAppearance);
-	})
+		restallAppearance();
+	}, [])
 
 
 	return (
@@ -110,6 +126,9 @@ const Appearance = (props) => {
 				</div>
 				<h4>{metadata.select}</h4>
 				{renderGenerationStatus()}
+				<div className={styles.appearanceButtonWrapper}>
+					<button onClick={() => { updateAppearance(); }}>{metadata.save}</button>
+				</div>
 			</div>
 		</div>
 	);

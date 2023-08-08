@@ -172,6 +172,27 @@ export async function getGeneratedImageUrls(prompt) {
 	return response.data;
 }
 
-export async function postPersonaImg(id, personaNum, promptEn, urls, urlIndex) {
-	
+export async function postPersonaImg(id, personaNum, promptKr, promptEn, urls, urlIndex) {
+	const response = await axios.post(`${server}/postpersonaimg`, null, {
+		params: {
+			id: id,
+			personaNum: personaNum,
+			promptEn: promptEn,
+			promptKr: promptKr,
+			imgUrls: JSON.stringify(urls),
+			imgUrlIndex: urlIndex
+		}
+	});
+	return response.data;
+}
+
+export async function getPersonaInfo(id, personaNum) {
+	const response = await axios.get(`${server}/getpersonainfo`, {
+		params: {
+			id: id,
+			personaNum: personaNum
+		}
+	});
+
+	return response.data;
 }

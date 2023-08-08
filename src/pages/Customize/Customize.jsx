@@ -12,6 +12,7 @@ const Customize = () => {
 
 	const { lang, id, type, step, taskIndex, personaNum } = useParams();
 
+
 	const metadata = require(`./metadata_${lang}`);
 
 	const [currentCategory, setCurrentCategory] = useState({ id: null });
@@ -24,7 +25,7 @@ const Customize = () => {
 	)
 
 	const [saveAppearance, setSaveAppearance] = useState(false);
-	const [updateAppearance, setUpdateAppearance] = useState(null);
+
 
 	const fetchTask = async () => {
 		const { title, description } = await getTaskInfo(id, taskIndex, "clochat");
@@ -38,8 +39,10 @@ const Customize = () => {
 		setIsCategoryFinished(isCategoryFinished);
 	}
 
-	const updateDialogue = () => {
-		postPersonaDialogue(id, personaNum, inputDialogue, isCategoryFinished);
+	const updateDialogue = (categoryIndex) => {
+		const newIsCategoryFinished = [...isCategoryFinished];
+		newIsCategoryFinished[categoryIndex] = true;
+		postPersonaDialogue(id, personaNum, inputDialogue, newIsCategoryFinished);
 	}
 
 
@@ -231,23 +234,21 @@ const Customize = () => {
 		)
 	}
 
-	const renderInputDialogueTitle = (categoryIndex, disabler=null, additionalUpdateDialogue=null) => {
-		console.log(disabler)
+	const renderInputDialogueTitle = (categoryIndex, disabler=null, removeButton=true) => {
 		return (
 			<div className={styles.inputDialogueTitleWrapper}>
 				<h3>{metadata.categories[categoryIndex].key}</h3>
-				<button 
-					onClick={() => { 
-						finishCategory(categoryIndex); 
-						updateDialogue(); 
-						if (additionalUpdateDialogue !== null) {
-							additionalUpdateDialogue();
-						}
-					}}
-					disabled={disabler === null ? false : disabler}
-				>
-					{metadata.save}
-				</button>
+				{!removeButton && 
+					<button 
+						onClick={async () => { 
+							finishCategory(categoryIndex); 
+							updateDialogue(categoryIndex); 
+						}}
+						disabled={disabler === null ? false : disabler}
+					>
+						{metadata.save}
+					</button>
+				}
 			</div>
 		)	
 	}
@@ -289,8 +290,6 @@ const Customize = () => {
 		)
 	}
 
-	console.log(inputDialogue)
-
 
 	const renderSwitch = () => {
 		switch(currentCategory) {
@@ -309,13 +308,12 @@ const Customize = () => {
 						{renderTaskDescription()}
 						<div>
 							<div className={styles.inputDialogueWrapper}>
-								{renderInputDialogueTitle(currentCategoryIndex, !saveAppearance, updateAppearance)}
+								{renderInputDialogueTitle(currentCategoryIndex, !saveAppearance, true)}
 								<Appearance 
 									lang={lang}
 									id={id}
 									personaNum={personaNum}
 									setSaveAppearance={setSaveAppearance}
-									setUpdateAppearance={setUpdateAppearance}
 								/>
 							</div>
 						</div>
@@ -371,9 +369,25 @@ const Customize = () => {
 									</div>
 									<div className={styles.customizeToggleSummary}>
 										{Object.keys(inputDialogue[index]).map((key, index2) => {
-											return (
-												<span>{inputDialogue[index][key] === true ? key : inputDialogue[index][key]}</span>
-											)
+
+											if (inputDialogue[index][key] === true) {
+												return (
+													<span key={index2}>{key}</span>
+												)
+											}
+											else if (typeof(inputDialogue[index][key]) === "string") {
+												return (
+													<span key={index2}>{inputDialogue[index][key]}</span>
+												)
+											}
+											else {
+												return inputDialogue[index][key].map((item, index3) => {
+													return (
+														<span key={index3}>{item}</span>
+													)
+												})
+												
+											}
 										})}
 									</div>
 								</div>

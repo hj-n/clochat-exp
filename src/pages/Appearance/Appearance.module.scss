@@ -68,3 +68,20 @@
 		border: 4px solid $mainColor;	
 	}
 }
+
+.appearanceButtonWrapper {
+
+	display: flex;
+	justify-content: right;
+	
+	button {
+		background-color: $mainColor;
+		color: white;
+		border: none;
+		padding: 5px 10px;
+		cursor: pointer;
+		width: 140px;
+		margin: 20px 0px;
+		font-size: 1.1rem;
+	}
+}

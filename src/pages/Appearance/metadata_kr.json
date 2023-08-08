@@ -8,5 +8,6 @@
 	"select": "선택",
 	"loading": "로딩 중...",
 	"loading_img": "/assets/loading.gif",
-	"generation": "생성"
+	"generation": "생성",
+	"save": "외모 저장"
 }
