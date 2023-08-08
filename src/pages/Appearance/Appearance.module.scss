@@ -73,7 +73,7 @@
 
 	display: flex;
 	justify-content: right;
-	
+
 	button {
 		background-color: $mainColor;
 		color: white;
@@ -83,5 +83,12 @@
 		width: 140px;
 		margin: 20px 0px;
 		font-size: 1.1rem;
+	}
+
+	button:disabled {
+		background-color: $mainLightColor;
+		color: white;
+		cursor: not-allowed;
+		font-weight: $regular;
 	}
 }

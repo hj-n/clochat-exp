@@ -6,7 +6,7 @@ import { getGeneratedImageUrls, postPersonaImg, getPersonaInfo } from "../../uti
 
 const Appearance = (props) => {
 
-	const { lang, id, personaNum, setSaveAppearance } = props;
+	const { lang, id, personaNum, setSaveAppearance, isCategoryFinished, setIsCategoryFinished } = props;
 
 	const metadata = require(`./metadata_${lang}`);
 
@@ -15,6 +15,8 @@ const Appearance = (props) => {
 	const [promptEn, setPromptEn] = useState("");
 	const [urls, setUrls] = useState([]);
 	const [selectedUrlIndex, setSelectedUrlIndex] = useState(-1);
+
+	const [selectingImg, setSelectingImg] = useState(true);
 
 
 
@@ -32,6 +34,10 @@ const Appearance = (props) => {
 
 
 	const updateAppearance = () => {
+		const newIsCategoryFinished = [...isCategoryFinished];
+		newIsCategoryFinished[5] = true;
+		setIsCategoryFinished(newIsCategoryFinished);
+		setSelectingImg(true);
 		postPersonaImg(id, personaNum, prompt, promptEn, urls, selectedUrlIndex);
 	}
 
@@ -62,6 +68,7 @@ const Appearance = (props) => {
 									onClick={() => {
 										setSelectedUrlIndex(index);
 										setSaveAppearance(true);
+										setSelectingImg(false);
 										console.log(selectedUrlIndex, urls);
 									}}
 									className={index === selectedUrlIndex ? styles.appearanceImgSelected : ""}
@@ -76,6 +83,7 @@ const Appearance = (props) => {
 	const generation = () => {
 		setStatus("loading");
 		setSelectedUrlIndex(-1);
+		setSelectingImg(true);
 		setUrls([]);
 		(async () => {
 			const data = await getGeneratedImageUrls(prompt);
@@ -127,7 +135,10 @@ const Appearance = (props) => {
 				<h4>{metadata.select}</h4>
 				{renderGenerationStatus()}
 				<div className={styles.appearanceButtonWrapper}>
-					<button onClick={() => { updateAppearance(); }}>{metadata.save}</button>
+					<button 
+						onClick={() => { updateAppearance(); }}
+						disabled={selectingImg}
+					>{metadata.save}</button>
 				</div>
 			</div>
 		</div>

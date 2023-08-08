@@ -234,7 +234,7 @@ const Customize = () => {
 		)
 	}
 
-	const renderInputDialogueTitle = (categoryIndex, disabler=null, removeButton=true) => {
+	const renderInputDialogueTitle = (categoryIndex, disabler=null, removeButton=false) => {
 		return (
 			<div className={styles.inputDialogueTitleWrapper}>
 				<h3>{metadata.categories[categoryIndex].key}</h3>
@@ -314,6 +314,8 @@ const Customize = () => {
 									id={id}
 									personaNum={personaNum}
 									setSaveAppearance={setSaveAppearance}
+									isCategoryFinished={isCategoryFinished}
+									setIsCategoryFinished={setIsCategoryFinished}
 								/>
 							</div>
 						</div>
