@@ -196,3 +196,15 @@ export async function getPersonaInfo(id, personaNum) {
 
 	return response.data;
 }
+
+export async function getPersonaPreview(id, personaNum, previewPrompt) {
+	const response = await axios.get(`${server}/getpersonapreview`, {
+		params: {
+			id: id,
+			personaNum: personaNum,
+			previewPrompt: previewPrompt
+		}
+	});
+
+	return response.data;
+}

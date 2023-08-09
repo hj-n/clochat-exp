@@ -328,6 +328,11 @@
 	}
 }
 
+.customizeToggleWrapper {
+	overflow-y: scroll;
+	height: 80vh;
+}
+
 .customizeToggleSummary {
 	display: flex;
 	flex-wrap: wrap;
@@ -345,3 +350,62 @@
 	}
 	
 }
+
+.customizeFinalButtonWrapper {
+	display: flex;
+	justify-content: space-between;
+	padding-right: 2vw;
+	align-items: center;
+
+	button {
+		width: 7vw;
+		margin: 10px;
+	}
+
+	.customizeSubmitButton {
+		background-color: $mainColor;
+		color: white;
+		border: none;
+		cursor: pointer;
+		font-size: 1.1rem;
+	}
+
+	.customizeSubmitButton:disabled {
+		background-color: $mainLightColor;
+		cursor: not-allowed;
+		font-weight: $regular;
+	}
+
+	.customizePreviewButton {
+		background-color: $mainLightColor;
+		color: $mainColor;
+		border: 2px solid $mainColor;
+		cursor: pointer;
+		font-size: 1.1rem;
+	}
+
+	.customizePreviewButtonShowPreview {
+		background-color: $mainLightColor;
+		color: $mainColor;
+		border: 2px solid $mainColor;
+		cursor: pointer;
+		font-size: 1.1rem;
+		z-index: 1001;
+	}
+}
+
+.previewOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	/* semi-transparent background */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	/* ensure it appears on top */
+}
+

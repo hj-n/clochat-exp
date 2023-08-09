@@ -101,5 +101,8 @@
 		]
 	},
 	"placeholder": "입력",
-	"save": "저장"
+	"save": "저장",
+	"submit": "완료",
+	"preview": "미리보기",
+	"preview_cancel": "미리보기 끄기"
 }

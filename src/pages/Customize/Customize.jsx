@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import styles from "./Customize.module.scss";
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { getPersonaDialogue, getTaskInfo, postPersonaDialogue } from '../../utils/communication';
 import Procedure from '../Procedure/Procedure';
 import Appearance from '../Appearance/Appearance';
+import Preview from '../Preview/Preview';
 
 const Customize = () => {
 
@@ -14,6 +15,7 @@ const Customize = () => {
 
 
 	const metadata = require(`./metadata_${lang}`);
+	const navigate = useNavigate();
 
 	const [currentCategory, setCurrentCategory] = useState({ id: null });
 	const [currentCategoryIndex, setCurrentCategoryIndex] = useState(-1);
@@ -25,6 +27,7 @@ const Customize = () => {
 	)
 
 	const [saveAppearance, setSaveAppearance] = useState(false);
+	const [showPreview, setShowPreview] = useState(false);
 
 
 	const fetchTask = async () => {
@@ -337,6 +340,10 @@ const Customize = () => {
 		}
 	}
 
+	const submitPersona = () => {
+		navigate(`/${lang}/${id}/${type}/chat/${step}`)
+	}
+
 	useEffect(() => { 
 		(async () => {
 			await fetchTask(); 
@@ -395,11 +402,34 @@ const Customize = () => {
 							)
 						})}
 					</div>
+					<div className={styles.customizeFinalButtonWrapper}>
+						<button 
+							className={styles.customizeSubmitButton}
+							disabled={isCategoryFinished.includes(false)}
+							onClick={() => { submitPersona(); }}
+						>{metadata.submit}</button>
+						<button 
+							className={showPreview ? styles.customizePreviewButtonShowPreview : styles.customizePreviewButton}
+							onClick={() => {setShowPreview(!showPreview);}}
+						>{showPreview ? metadata.preview_cancel : metadata.preview}</button>
+					</div>
 				</div>
 				<div className={styles.customizeMainPanel}>
 					{renderSwitch()}
 				</div>
 			</div>
+			{showPreview && 
+			<div>
+				<div className={styles.previewOverlay}>
+					<Preview
+						lang={lang}
+						id={id}
+						personaNum={personaNum}
+					/>
+				</div>
+			</div>
+
+			}
 		</div>
 	)
 }

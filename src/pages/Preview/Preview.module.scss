@@ -1,0 +1,96 @@
+@import '../../globalStyle.scss';
+
+
+
+.previewWrapper {
+	background: white;
+	padding: 35px;
+	border-radius: 10px;
+	border: 2px solid $mainColor;
+	width: 50vw;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+
+
+	p {
+		margin: 0px;
+		font-size: 1.05em;
+	}
+
+	.previewDescPurple {
+		color: $mainColor;
+		font-weight: $bold;
+	}
+
+	.previewTitleWrapper {
+		padding-bottom: 15px;
+		border-bottom: 4px solid $mainColor;
+	}
+}
+
+.inputDialogueTextInputCheckboxWrapper {
+	display: flex;
+	justify-content: space-between;
+	padding: 15px 0px;
+	textarea {
+		margin-left: 1px;
+		width: 43vw;
+		font-size: 1.3rem;
+		font-family: 'Noto Sans', sans-serif;
+		align-items: center;
+		height: 32px;
+		// overflow-y: scroll;
+		padding: 0;
+		// border: 0px;
+		resize: none;
+		border: 1px solid #d4d2d2;
+		padding-left: 5px;
+
+		// background-color: transparent;
+	}
+
+	textarea:focus {
+		outline: none;
+	}
+
+	textarea::placeholder {
+		color: #d4d2d2;
+	}
+
+	textarea:not(:placeholder-shown):valid {
+		border: 2px solid $mainColor;
+		color: $mainColor;
+		font-weight: $bold;
+
+	}
+
+	button {
+		width: 5vw;
+		background-color: $mainColor;
+		color: white;
+		font-size: 1.1rem;
+		height: 37px;
+
+	}
+
+}
+
+.previewAnswerWrapper {
+
+	display: flex;
+	.previewAnswerCircle {
+		width: 20px;
+		height: 20px;
+		margin-top: 4px;
+		background-color: $mainColor;
+		border-radius: 50%;
+		margin-right: 6px;
+	}
+
+	p {
+		width: 42vw;
+	}
+
+	img {
+		width: 30px;
+	}
+}
