@@ -1,0 +1,8 @@
+{
+	"title": "이전에 만든 페르소나 불러오기",
+	"desc": "이전 페르소나를 선택 후 편집 또는 바로 대화해보세요.",
+	"edit": "편집하기",
+	"conversation": "바로 대화하기",
+	"off_path": "/assets/off.png",
+	"nameKey": "이름"
+}

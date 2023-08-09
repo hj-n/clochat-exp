@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import styles from "./Customize.module.scss";
 
@@ -8,6 +8,9 @@ import { getPersonaDialogue, getTaskInfo, postPersonaDialogue } from '../../util
 import Procedure from '../Procedure/Procedure';
 import Appearance from '../Appearance/Appearance';
 import Preview from '../Preview/Preview';
+
+import parse from 'html-react-parser';
+import Load from '../Load/Load';
 
 const Customize = () => {
 
@@ -28,6 +31,9 @@ const Customize = () => {
 
 	const [saveAppearance, setSaveAppearance] = useState(false);
 	const [showPreview, setShowPreview] = useState(false);
+	const [showLoadPersona, setShowLoadPersona] = useState(false);
+
+	const leftBannerRef = useRef(null);
 
 
 	const fetchTask = async () => {
@@ -335,6 +341,15 @@ const Customize = () => {
 						<div className={styles.customizeProcedureWrapper}>
 							<Procedure procedure={metadata.procedure} />
 						</div>
+						{personaNum === "x" && <div className={styles.customizeLoadWrapper}>
+							{metadata.loadPersona.desc.map((item, index) => {
+								return <p key={index}>{parse(item)}</p>
+							})}
+							<button 
+								className={styles.customizeLoadButton}
+								onClick={() => { setShowLoadPersona(true); } }
+							>{metadata.loadPersona.load}</button>
+						</div>}
 					</div>
 				)
 		}
@@ -347,14 +362,20 @@ const Customize = () => {
 	useEffect(() => { 
 		(async () => {
 			await fetchTask(); 
-			await fetchDialogue();
+			if (personaNum !== "x") {			
+				leftBannerRef.current.style.pointerEvents = "auto";
+				await fetchDialogue();
+			}
+			else {
+				leftBannerRef.current.style.pointerEvents = "none";
+			}
 		})();
 	}, []);
 
 	return (
 		<div>
 			<div className={styles.customizeWrapper}>
-				<div className={styles.leftBannerWrapper}>
+				<div className={styles.leftBannerWrapper} ref={leftBannerRef}>
 					<h2>{metadata.title}</h2>
 					<p className={styles.purpleText}>{metadata.subtitle}</p>
 					<div className={styles.customizeToggleWrapper}>
@@ -428,7 +449,20 @@ const Customize = () => {
 					/>
 				</div>
 			</div>
-
+			}
+			{showLoadPersona &&
+			<div>
+				<div className={styles.previewOverlay}>
+					<Load 
+						lang={lang}
+						id={id}
+						type={type}
+						step={step}
+						taskIndex={taskIndex}
+						setShowLoadPersona={setShowLoadPersona}
+					/>
+				</div>
+			</div>
 			}
 		</div>
 	)

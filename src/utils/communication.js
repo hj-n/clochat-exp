@@ -208,3 +208,23 @@ export async function getPersonaPreview(id, personaNum, previewPrompt) {
 
 	return response.data;
 }
+
+export async function getPersonaInfoList(id) {
+	const response = await axios.get(`${server}/getpersonainfolist`, {
+		params: {
+			id: id
+		}
+	});
+
+	return response.data;
+}
+
+export async function getNextPersonaNum(id) {
+	const response = await axios.get(`${server}/getnextpersonanum`, {
+		params: {
+			id: id
+		}
+	});
+
+	return response.data;
+}

@@ -34,6 +34,7 @@ const Preview = (props) => {
 				<textarea
 					placeholder={metadata.placeholder}
 					value={previewPrompt}
+					onChange={(e) => { setPreviewPrompt(e.target.value); }}
 				/>
 				<button onClick={() => { getAnswer(); }}>{metadata.submit}</button>
 			</div>
