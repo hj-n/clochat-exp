@@ -48,6 +48,7 @@ const Survey = () => {
 			if (!isFinished) {
 				await postConversationStart(id, parseInt(taskIndex) + 1, 0, "chatgpt");
 				navigate(`/${lang}/${id}/${type}/chat/${step}`);
+				// TODO
 			}
 			else {
 				if (step === "study1" && type === "type1") {

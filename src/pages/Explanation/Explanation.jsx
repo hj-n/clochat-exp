@@ -26,12 +26,12 @@ const Explanation = () => {
 
 	const nextLink = {
 		"type1": { 
-			"study1": `/${lang}/${id}/${type}/chat/${step}`,
+			"study1": `/${lang}/${id}/${type}/chat/${step}/x`,
 			"study2": `/${lang}/${id}/${type}/explanation_clochat/${step}`
 		},
 		"type2": {
 			"study1": `/${lang}/${id}/${type}/explanation_clochat/${step}`,
-			"study2": `/${lang}/${id}/${type}/chat/${step}`
+			"study2": `/${lang}/${id}/${type}/chat/${step}/x`
 		}
 	}[type][step];
 

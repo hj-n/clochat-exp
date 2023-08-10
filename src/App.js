@@ -23,7 +23,7 @@ function App() {
 				<Route path="/:lang/:id/:type/interview" element={<Interview/>} />
 				<Route path="/:lang/:id/:type/explanation/:step" element={<Explanation />} />
 				<Route path="/:lang/:id/:type/explanation_clochat/:step" element={ <ExplanationClochat /> } />
-				<Route path="/:lang/:id/:type/chat/:step" element={<Chat />} />
+				<Route path="/:lang/:id/:type/chat/:step/:defaultPersonaNum" element={<Chat />} />
 				<Route path="/:lang/:id/:type/survey/:step/:taskIndex/:surveyType" element={<Survey />} />
 				<Route path="/:lang/:id/:type/customize/:step/:taskIndex/:personaNum" element={<Customize />} />
 			</Routes>

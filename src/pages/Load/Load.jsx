@@ -46,7 +46,7 @@ const Load = (props) => {
 	}
 
 	const startConversation = () => {
-
+		navigate(`/${lang}/${id}/${type}/chat/${step}/${personaInfoList[selectedPersonaIndex].personaNum}`)
 	}
 
 	useEffect(() => {

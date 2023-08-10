@@ -4,7 +4,7 @@ import styles from "./Customize.module.scss";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { getPersonaDialogue, getTaskInfo, postPersonaDialogue } from '../../utils/communication';
+import { getPersonaDialogue, getTaskInfo, postNewPersona, postPersonaDialogue, getNextPersonaNum } from '../../utils/communication';
 import Procedure from '../Procedure/Procedure';
 import Appearance from '../Appearance/Appearance';
 import Preview from '../Preview/Preview';
@@ -345,10 +345,16 @@ const Customize = () => {
 							{metadata.loadPersona.desc.map((item, index) => {
 								return <p key={index}>{parse(item)}</p>
 							})}
-							<button 
-								className={styles.customizeLoadButton}
-								onClick={() => { setShowLoadPersona(true); } }
-							>{metadata.loadPersona.load}</button>
+							<div className={styles.customizeLoadNewButtonWrapper}>
+								<button 
+									className={styles.customizeLoadButton}
+									onClick={() => { setShowLoadPersona(true); } }
+								>{metadata.loadPersona.load}</button>
+								<button
+									className={styles.customizeNewButton}
+									onClick={() => { startNewPersona();}}
+								>{metadata.loadPersona.new}</button>
+							</div>
 						</div>}
 					</div>
 				)
@@ -356,7 +362,16 @@ const Customize = () => {
 	}
 
 	const submitPersona = () => {
-		navigate(`/${lang}/${id}/${type}/chat/${step}`)
+		navigate(`/${lang}/${id}/${type}/chat/${step}/${personaNum}`)
+	}
+
+	const startNewPersona = () => {
+		(async () => {
+			const newPersonaNum = await getNextPersonaNum(id);
+			await postNewPersona(id, newPersonaNum);
+			navigate(`/${lang}/${id}/${type}/customize/${step}/${taskIndex}/${newPersonaNum}`);
+			navigate(0);
+		})();
 	}
 
 	useEffect(() => { 
