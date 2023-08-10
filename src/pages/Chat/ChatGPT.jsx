@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const ChatGPT = (props) => {
 
-	const { lang, id, type, step } = props;
+	const { lang, id, type, step, defaultPersonaNum, studyType } = props;
 
 	const navigate = useNavigate();
 
@@ -29,11 +29,11 @@ const ChatGPT = (props) => {
 	const [taskDescription, setTaskDescription] = useState("");
 	const [inputText, setInputText] = useState("");
 
-	const [conversation, setConversation] = useState([])
+	const [conversation, setConversation] = useState([]);
 
 	const fetchTaskIndices = async () => {
-		const indices = await getCurrentTaskTrialIndices(id, "chatgpt");
-		const { title, description } = await getTaskInfo(id, currentTaskIndex, "chatgpt");
+		const indices = await getCurrentTaskTrialIndices(id, studyType);
+		const { title, description } = await getTaskInfo(id, currentTaskIndex, studyType);
 		setTaskIndices(indices["taskIndices"]);
 		setTrialIndices(indices["trialIndices"]);
 
@@ -53,8 +53,8 @@ const ChatGPT = (props) => {
 		if (inputText == "") { return; }
 
 		(async () => {
-			await postConversation(id, currentTaskIndex, currentTrialIndex, inputText, "chatgpt");
-			const newConversations = await getConversations(id, currentTaskIndex, currentTrialIndex, "chatgpt");
+			await postConversation(id, currentTaskIndex, currentTrialIndex, inputText, studyType);
+			const newConversations = await getConversations(id, currentTaskIndex, currentTrialIndex, studyType);
 			setConversation(newConversations);
 			// scrol to bottom
 			chatInputButtonRef.current.disabled = false;
@@ -73,7 +73,7 @@ const ChatGPT = (props) => {
 
 	const rerunConversation = () => {
 		(async () => {
-			await postConversationStart(id, currentTaskIndex, currentTrialIndex + 1, "chatgpt");
+			await postConversationStart(id, currentTaskIndex, currentTrialIndex + 1, studyType);
 			setCurrentTrialIndex(currentTrialIndex + 1);
 		})();
 	}
@@ -85,7 +85,7 @@ const ChatGPT = (props) => {
 	useEffect(() => { 
 		fetchTaskIndices(); 
 		(async () => {
-			const newConversations = await getConversations(id, currentTaskIndex, currentTrialIndex, "chatgpt");
+			const newConversations = await getConversations(id, currentTaskIndex, currentTrialIndex, studyType);
 			setConversation(newConversations);
 		})();
 	}, [currentTaskIndex, currentTrialIndex])

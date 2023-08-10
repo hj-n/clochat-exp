@@ -162,6 +162,18 @@ export async function postPersonaDialogue(id, personaNum, dialogue, isCategoryFi
 	return response.data;
 }
 
+export async function postIsCategoryFinished(id, personaNum, isCategoryFinished) {
+	const response = await axios.post(`${server}/postiscategoryfinished`, null, {
+		params: {
+			id: id,
+			personaNum: personaNum,
+			isCategoryFinished: JSON.stringify(isCategoryFinished)
+		}
+	});
+
+	return response.data;
+}
+
 export async function getGeneratedImageUrls(prompt) {
 	const response = await axios.get(`${server}/getgeneratedimageurls`, {
 		params: {
@@ -223,6 +235,18 @@ export async function getNextPersonaNum(id) {
 	const response = await axios.get(`${server}/getnextpersonanum`, {
 		params: {
 			id: id
+		}
+	});
+
+	return response.data;
+}
+
+export async function getNextTrialIndex(id, taskIndex, studyType) {
+	const response = await axios.get(`${server}/getnexttrialindex`, {
+		params: {
+			id: id,
+			taskIndex: taskIndex,
+			studyType: studyType
 		}
 	});
 

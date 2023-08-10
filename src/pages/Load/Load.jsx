@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "./Load.module.scss";
-import { getNextPersonaNum, getPersonaInfoList, postNewPersona, postPersonaDialogue, postPersonaImg } from "../../utils/communication";
+import { getNextPersonaNum, getNextTrialIndex, getPersonaInfoList, postConversationStart, postNewPersona, postPersonaDialogue, postPersonaImg } from "../../utils/communication";
 
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -46,7 +46,11 @@ const Load = (props) => {
 	}
 
 	const startConversation = () => {
-		navigate(`/${lang}/${id}/${type}/chat/${step}/${personaInfoList[selectedPersonaIndex].personaNum}`)
+		(async () => {
+			const trialIndex = await getNextTrialIndex(id, taskIndex, "clochat");
+			await postConversationStart(id, taskIndex, trialIndex, "clochat")
+			navigate(`/${lang}/${id}/${type}/chat/${step}/${personaInfoList[selectedPersonaIndex].personaNum}`)
+		})();
 	}
 
 	useEffect(() => {

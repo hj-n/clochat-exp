@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import styles from "./Appearance.module.scss";
 import parse from 'html-react-parser';
-import { getGeneratedImageUrls, postPersonaImg, getPersonaInfo } from "../../utils/communication";
+import { getGeneratedImageUrls, postPersonaImg, getPersonaInfo, postIsCategoryFinished } from "../../utils/communication";
 
 const Appearance = (props) => {
 
@@ -38,6 +38,7 @@ const Appearance = (props) => {
 		newIsCategoryFinished[5] = true;
 		setIsCategoryFinished(newIsCategoryFinished);
 		setSelectingImg(true);
+		postIsCategoryFinished(id, personaNum, newIsCategoryFinished);
 		postPersonaImg(id, personaNum, prompt, promptEn, urls, selectedUrlIndex);
 	}
 

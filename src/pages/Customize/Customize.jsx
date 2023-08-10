@@ -4,7 +4,7 @@ import styles from "./Customize.module.scss";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { getPersonaDialogue, getTaskInfo, postNewPersona, postPersonaDialogue, getNextPersonaNum } from '../../utils/communication';
+import { getPersonaDialogue, getTaskInfo, postNewPersona, postPersonaDialogue, getNextPersonaNum, postConversationStart, getNextTrialIndex } from '../../utils/communication';
 import Procedure from '../Procedure/Procedure';
 import Appearance from '../Appearance/Appearance';
 import Preview from '../Preview/Preview';
@@ -14,7 +14,7 @@ import Load from '../Load/Load';
 
 const Customize = () => {
 
-	const { lang, id, type, step, taskIndex, personaNum } = useParams();
+	const { lang, id, type, step, taskIndex,personaNum } = useParams();
 
 
 	const metadata = require(`./metadata_${lang}`);
@@ -362,7 +362,11 @@ const Customize = () => {
 	}
 
 	const submitPersona = () => {
-		navigate(`/${lang}/${id}/${type}/chat/${step}/${personaNum}`)
+		(async () => {
+			const trialIndex = await getNextTrialIndex(id, taskIndex, "clochat");
+			postConversationStart(id, taskIndex, trialIndex, "clochat");
+			navigate(`/${lang}/${id}/${type}/chat/${step}/${personaNum}`)
+		})();
 	}
 
 	const startNewPersona = () => {

@@ -6,22 +6,28 @@ import CloChat from './CloChat';
 
 const Chat = () => {
 
-	const { lang, id, type, step } = useParams();
+	const { lang, id, type, step, defaultPersonaNum } = useParams();
 
-	const ChatGPT_Route = (<ChatGPT lang={lang} id={id} type={type} step={step} />)
-	const CloChat_Route = (<CloChat lang={lang} id={id} type={type} step={step} />)
-	const Routing = {
+
+	const studyType  = {
 		"type1": {
-			"study1": ChatGPT_Route, "study2": CloChat_Route
+			"study1": "chatgpt", "study2": "clochat"
 		},
 		"type2": {
-			"study1": CloChat_Route, "study2": ChatGPT_Route
+			"study1": "clochat", "study2": "chatgpt"
 		}
-	}
+	}[type][step];
 
 	return (
 		<div>
-			{Routing[type][step]}
+			{<ChatGPT
+				lang={lang}
+				id={id}
+				type={type}
+				step={step}
+				defaultPersonaNum={defaultPersonaNum}
+				studyType={studyType}
+			/>}
 		</div>
 	)
 
