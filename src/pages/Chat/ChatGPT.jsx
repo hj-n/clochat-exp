@@ -118,13 +118,14 @@ const ChatGPT = (props) => {
 		<div className={styles.chatgptWrapper}>
 			<div className={styles.leftBannerWrapper}>
 				<h2>{ studyType === "chatgpt" ? "ChatGPT" : "CloChat" }</h2>
-				<p>현재 페르소나</p>
+				{studyType === "clochat" && <div><p>현재 페르소나</p>
 				<div className={styles.currentPersonaWrapper}>
-					{studyType === "clochat" && <div className={styles.currentPersonaWrapperInner}>
+					<div className={styles.currentPersonaWrapperInner}>
 						<img src={personaImgUrl} />
 						<p>{personaName}</p>
-					</div>}
+					</div>
 				</div>
+				</div>}
 				<p>Chat</p>
 				<div className={styles.chatgptTaskList}>
 					{taskIndices.map((task, index) => {

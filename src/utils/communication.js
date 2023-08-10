@@ -1,14 +1,19 @@
 import axios from "axios";
+import axiosRetry from 'axios-retry';
 
-const server = "http://147.46.240.50:8888";
+const server = "http://147.46.240.50:9109";
 
 export async function registerParticipant(id) {
+	axiosRetry(axios, { retries: 3 });
+
 	const response = await axios.post(`${server}/register`, null, {
 		params: { id: id }
 	});
 }
 
 export async function updateParticipantDemographic(id, basicDemo, prelimDemo) {
+	axiosRetry(axios, { retries: 3 });
+
 	const params = {
 		"id": id,
 		"name": basicDemo.name,
@@ -22,13 +27,14 @@ export async function updateParticipantDemographic(id, basicDemo, prelimDemo) {
 		"llm_friendliness": prelimDemo.llm_friendliness,
 		"prompting_friendliness": prelimDemo.prompting_friendliness,
 	}
-
+	
 	const response = await axios.post(`${server}/demographics`, null, {
 		params: params
 	});
 }
 
 export async function getCurrentTaskTrialIndices(id, studyType) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/currenttasktrialindices`, {
 		params: {
 			id: id,
@@ -40,6 +46,7 @@ export async function getCurrentTaskTrialIndices(id, studyType) {
 }
 
 export async function getTaskInfo(id, index, studyType) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/taskinfo`, {
 		params: {
 			id: id,
@@ -51,6 +58,7 @@ export async function getTaskInfo(id, index, studyType) {
 }
 
 export async function postConversation(id, taskIndex, trialIndex, content, studyType, personaNum) {
+	axiosRetry(axios, { retries: 3 });
 	const params = {
 		id: id,
 		taskIndex: taskIndex,
@@ -68,6 +76,7 @@ export async function postConversation(id, taskIndex, trialIndex, content, study
 }
 
 export async function getConversations(id, taskIndex, trialIndex,studyType) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/getconversations`, {
 		params: {
 			id: id,
@@ -81,6 +90,7 @@ export async function getConversations(id, taskIndex, trialIndex,studyType) {
 }
 
 export async function postConversationStart(id, taskIndex, trialIndex, studyType) {
+	axiosRetry(axios, { retries: 3 });
 	const params = {
 		id: id,
 		taskIndex: taskIndex,
@@ -95,6 +105,7 @@ export async function postConversationStart(id, taskIndex, trialIndex, studyType
 }
 
 export async function postSurveyResult(id, taskIndex, studyType, surveyType, surveyResult) {
+	axiosRetry(axios, { retries: 3 });
 	const params = {
 		id: id,
 		taskIndex: taskIndex,
@@ -103,7 +114,6 @@ export async function postSurveyResult(id, taskIndex, studyType, surveyType, sur
 		surveyResult: "[" + surveyResult.toString() + "]"
 	}
 
-	console.log(params)
 
 	const response = await axios.post(`${server}/postsurveyresult`, null, {
 		params: params
@@ -113,6 +123,7 @@ export async function postSurveyResult(id, taskIndex, studyType, surveyType, sur
 }
 
 export async function checkStudyComplete(id, studyType, taskIndex) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/checkstudycomplete`, {
 		params: {
 			id: id,
@@ -125,6 +136,7 @@ export async function checkStudyComplete(id, studyType, taskIndex) {
 }
 
 export async function postNewPersona(id, personaNum) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.post(`${server}/postnewpersona`, null, {
 		params: {
 			id: id,
@@ -136,6 +148,7 @@ export async function postNewPersona(id, personaNum) {
 }
 
 export async function getPersonaDialogue(id, personaNum) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/getpersonadialogue`, {
 		params: {
 			id: id,
@@ -144,12 +157,12 @@ export async function getPersonaDialogue(id, personaNum) {
 	});
 
 
-	console.log(response.data)
 
 	return response.data
 }
 
 export async function postPersonaDialogue(id, personaNum, dialogue, isCategoryFinished) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.post(`${server}/postpersonadialogue`, null, {
 		params: {
 			id: id,
@@ -164,6 +177,7 @@ export async function postPersonaDialogue(id, personaNum, dialogue, isCategoryFi
 }
 
 export async function postIsCategoryFinished(id, personaNum, isCategoryFinished) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.post(`${server}/postiscategoryfinished`, null, {
 		params: {
 			id: id,
@@ -176,6 +190,7 @@ export async function postIsCategoryFinished(id, personaNum, isCategoryFinished)
 }
 
 export async function getGeneratedImageUrls(prompt) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/getgeneratedimageurls`, {
 		params: {
 			prompt: prompt
@@ -186,6 +201,7 @@ export async function getGeneratedImageUrls(prompt) {
 }
 
 export async function postPersonaImg(id, personaNum, promptKr, promptEn, urls, urlIndex) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.post(`${server}/postpersonaimg`, null, {
 		params: {
 			id: id,
@@ -200,6 +216,7 @@ export async function postPersonaImg(id, personaNum, promptKr, promptEn, urls, u
 }
 
 export async function getPersonaInfo(id, personaNum) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/getpersonainfo`, {
 		params: {
 			id: id,
@@ -211,6 +228,7 @@ export async function getPersonaInfo(id, personaNum) {
 }
 
 export async function getPersonaPreview(id, personaNum, previewPrompt) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/getpersonapreview`, {
 		params: {
 			id: id,
@@ -223,6 +241,7 @@ export async function getPersonaPreview(id, personaNum, previewPrompt) {
 }
 
 export async function getPersonaInfoList(id) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/getpersonainfolist`, {
 		params: {
 			id: id
@@ -233,6 +252,7 @@ export async function getPersonaInfoList(id) {
 }
 
 export async function getNextPersonaNum(id) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/getnextpersonanum`, {
 		params: {
 			id: id
@@ -243,6 +263,7 @@ export async function getNextPersonaNum(id) {
 }
 
 export async function getNextTrialIndex(id, taskIndex, studyType) {
+	axiosRetry(axios, { retries: 3 });
 	const response = await axios.get(`${server}/getnexttrialindex`, {
 		params: {
 			id: id,

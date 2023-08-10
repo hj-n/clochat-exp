@@ -20,7 +20,6 @@ const Demographic = () => {
 
 	const [finished, setFinished] = useState(false);
 
-	console.log(basicDemo, prelimDemo)
 
 	const updateFinished = () => {
 		for (const key in basicDemo) {
