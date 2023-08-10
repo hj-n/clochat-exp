@@ -14,7 +14,6 @@ const ChatGPT = (props) => {
 
 	const navigate = useNavigate();
 
-	// navigate(0);
 
 	const metadata = require(`./chatgpt_metadata_${lang}`);
 

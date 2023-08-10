@@ -366,6 +366,7 @@ const Customize = () => {
 			const trialIndex = await getNextTrialIndex(id, taskIndex, "clochat");
 			postConversationStart(id, taskIndex, trialIndex, "clochat");
 			navigate(`/${lang}/${id}/${type}/chat/${step}/${personaNum}`)
+			navigate(0);
 		})();
 	}
 
