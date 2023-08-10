@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const server = "http://localhost:8888";
+const server = "http://147.46.240.50:8888";
 
 export async function registerParticipant(id) {
 	const response = await axios.post(`${server}/register`, null, {
