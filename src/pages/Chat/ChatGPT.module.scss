@@ -206,3 +206,33 @@ font-size: 1.0rem;
 	}
 }
 
+.currentPersonaWrapper {
+	align-items: center;
+
+	.currentPersonaWrapperInner {
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+
+		width: 160px;
+		border-radius: 10px;
+		background-color: $mainLightColor;
+		padding: 20px;
+
+		border: 2px solid $mainColor;
+
+		img {
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			border: 2px solid $mainColor;
+		}
+		
+		p {
+			color: $mainColor;
+			margin-bottom: 0px;
+		}
+	}
+}

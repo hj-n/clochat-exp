@@ -96,6 +96,10 @@ const Survey = () => {
 								return (
 									<div className={styles.surveyQuestionWrapper} key={index2}>
 										<h4>{`${question.index + 1}. ${question.question}`}</h4>
+										<div className={styles.surveyQuestionDescription}>
+											<p>{metadata.worst}</p>
+											<p>{metadata.best}</p>
+										</div>
 										<div className={styles.surveyQuestionButtonWrapper}>
 											{new Array(7).fill(null).map((_, buttonIndex) => {
 												return (

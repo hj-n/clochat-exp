@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import styles from "./ChatGPT.module.scss";
 
-import { getConversations, getCurrentTaskTrialIndices, getTaskInfo, postConversation, postConversationStart } from "../../utils/communication";
+import { getConversations, getCurrentTaskTrialIndices, getPersonaInfo, getTaskInfo, postConversation, postConversationStart } from "../../utils/communication";
 
 import inputSvg from "../../assets/input.svg";
 
@@ -28,15 +28,22 @@ const ChatGPT = (props) => {
 	const [taskTitle, setTaskTitle] = useState("");
 	const [taskDescription, setTaskDescription] = useState("");
 	const [inputText, setInputText] = useState("");
+	const [personaNum, setPersonaNum] = useState(defaultPersonaNum);
+	const [personaImgUrl, setPersonaImgUrl] = useState(null);
+	const [personaName, setPersonaName] = useState(null);
 
 	const [conversation, setConversation] = useState([]);
 
 	const fetchTaskIndices = async () => {
 		const indices = await getCurrentTaskTrialIndices(id, studyType);
 		const { title, description } = await getTaskInfo(id, currentTaskIndex, studyType);
+		const personaInfo = await getPersonaInfo(id, personaNum);
+
+
 		setTaskIndices(indices["taskIndices"]);
 		setTrialIndices(indices["trialIndices"]);
-
+		setPersonaImgUrl(personaInfo["imgUrls"][personaInfo["imgUrlIndex"]])
+		setPersonaName(personaInfo["inputDialogue"][0][metadata.nameKey]);
 		
 
 		const newTaskIndex = indices["taskIndices"][indices["taskIndices"].length - 1];
@@ -53,7 +60,7 @@ const ChatGPT = (props) => {
 		if (inputText == "") { return; }
 
 		(async () => {
-			await postConversation(id, currentTaskIndex, currentTrialIndex, inputText, studyType);
+			await postConversation(id, currentTaskIndex, currentTrialIndex, inputText, studyType, personaNum);
 			const newConversations = await getConversations(id, currentTaskIndex, currentTrialIndex, studyType);
 			setConversation(newConversations);
 			// scrol to bottom
@@ -72,10 +79,15 @@ const ChatGPT = (props) => {
 	}
 
 	const rerunConversation = () => {
-		(async () => {
-			await postConversationStart(id, currentTaskIndex, currentTrialIndex + 1, studyType);
-			setCurrentTrialIndex(currentTrialIndex + 1);
-		})();
+		if (studyType === "chatgpt") {
+			(async () => {
+				await postConversationStart(id, currentTaskIndex, currentTrialIndex + 1, studyType);
+				setCurrentTrialIndex(currentTrialIndex + 1);
+			})();
+		}
+		else if (studyType === "clochat") {
+			navigate(`/${lang}/${id}/${type}/customize/${step}/${currentTaskIndex}/x`);
+		}
 	}
 
 	const endConversation = () => {
@@ -97,7 +109,14 @@ const ChatGPT = (props) => {
 	return (
 		<div className={styles.chatgptWrapper}>
 			<div className={styles.leftBannerWrapper}>
-				<h2>ChatGPT</h2>
+				<h2>{ studyType === "chatgpt" ? "ChatGPT" : "CloChat" }</h2>
+				<p>현재 페르소나</p>
+				<div className={styles.currentPersonaWrapper}>
+					<div className={styles.currentPersonaWrapperInner}>
+						<img src={personaImgUrl} />
+						<p>{personaName}</p>
+					</div>
+				</div>
 				<p>Chat</p>
 				<div className={styles.chatgptTaskList}>
 					{taskIndices.map((task, index) => {
@@ -136,7 +155,7 @@ const ChatGPT = (props) => {
 							return (
 								<div key={index} className={item.role === "user" ? styles.chatHistoryUserItem : styles.chatHistorySystemItem}>
 									<div className={styles.chatHistoryItemContent}>
-										<img src={metadata.icon[item.role]} alt={item.role} />
+										<img src={studyType === "chatgpt" || item.role === "user"? metadata.icon[item.role] : personaImgUrl } alt={item.role} />
 										{item.content === "<loading>" ? 
 										<img src={metadata.icon["loading"]} alt="loading" /> :
 										<p>{`${item.content}`}</p>}

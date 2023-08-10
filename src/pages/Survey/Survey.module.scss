@@ -111,4 +111,17 @@
 		}
 	}
 
+
+
+}
+
+.surveyQuestionDescription {
+	display: flex;
+	justify-content: space-between;
+
+	p {
+		margin-top: 0px;
+		font-size: 0.9rem;
+		color: $grayColor;
+	}
 }

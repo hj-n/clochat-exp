@@ -50,13 +50,14 @@ export async function getTaskInfo(id, index, studyType) {
 	return response.data;
 }
 
-export async function postConversation(id, taskIndex, trialIndex, content, studyType) {
+export async function postConversation(id, taskIndex, trialIndex, content, studyType, personaNum) {
 	const params = {
 		id: id,
 		taskIndex: taskIndex,
 		trialIndex: trialIndex,
 		content: content,
-		studyType: studyType
+		studyType: studyType,
+		personaNum: personaNum
 	}
 
 	const response = await axios.post(`${server}/postconversation`, null, {
