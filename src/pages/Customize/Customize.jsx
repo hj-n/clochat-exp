@@ -61,7 +61,7 @@ const Customize = () => {
 		return (
 			<div className={styles.chatgptTaskDesc}>
 				<div className={styles.chatgptTaskDescInnerWrapper}>
-					<h4 className={styles.chatgptTaskDescTitle}>{`Task ${taskIndex + 1}`}</h4>
+					<h4 className={styles.chatgptTaskDescTitle}>{`Task ${parseInt(taskIndex) + 1}`}</h4>
 					<div className={styles.chatgptTaskDescContent}>
 						<h5>{taskTitle}</h5>
 						<p>{taskDescription}</p>
@@ -334,7 +334,7 @@ const Customize = () => {
 				return (
 					<div className={styles.customizeDefaultOuter}>
 						<div className={styles.customizeDefaultWrapper}>
-							<h1>{`Task ${taskIndex + 1}`}</h1>
+							<h1>{`Task ${parseInt(taskIndex) + 1}`}</h1>
 							<h3>{taskTitle}</h3>
 							<p>{taskDescription}</p>
 						</div>

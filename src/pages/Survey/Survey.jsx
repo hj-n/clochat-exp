@@ -41,18 +41,38 @@ const Survey = () => {
 
 	const submitSurvey = () => {
 		(async () => {
-			postSurveyResult(id, taskIndex, studyType, surveyType, surveyAnswer);
-		})();
-		(async () => {
+			await postSurveyResult(id, taskIndex, studyType, surveyType, surveyAnswer);
 			const isFinished = await checkStudyComplete(id, studyType, taskIndex);
 			if (!isFinished) {
-				await postConversationStart(id, parseInt(taskIndex) + 1, 0, "chatgpt");
-				navigate(`/${lang}/${id}/${type}/chat/${step}`);
+				if (studyType === "chatgpt") {
+					await postConversationStart(id, parseInt(taskIndex) + 1, 0, "chatgpt");
+					navigate(`/${lang}/${id}/${type}/chat/${step}/x`);
+				}
+				else if (studyType === "clochat") {
+					if (surveyType === "system") {
+						navigate(`/${lang}/${id}/${type}/survey/${step}/${taskIndex}/persona`);
+						setSurveyAnswer(new Array(questions.length).fill(false));
+						navigate(0);
+					}
+					else {
+						navigate(`/${lang}/${id}/${type}/customize/${step}/${parseInt(taskIndex) + 1}/x`)
+					}
+				}
 				// TODO
 			}
 			else {
-				if (step === "study1" && type === "type1") {
+				if (step === "study1") {
 					navigate(`/${lang}/${id}/${type}/explanation/study2`)
+				}
+				else {
+					if (surveyType === "system") {
+						navigate(`/${lang}/${id}/${type}/survey/${step}/${taskIndex}/persona`);
+						setSurveyAnswer(new Array(questions.length).fill(false));
+						navigate(0);
+					}
+					else {
+						navigate(`/${lang}/${id}/${type}/goodbye`);
+					}
 				}
 			}
 

@@ -11,6 +11,7 @@ import ExplanationClochat from './pages/ExplanationClochat/ExplanationClochat';
 import Chat from './pages/Chat/Chat';
 import Survey from './pages/Survey/Survey';
 import Customize from './pages/Customize/Customize';
+import Goodbye from './pages/Goodbye/Goodbye';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
 				<Route path="/:lang/:id/:type/chat/:step/:defaultPersonaNum" element={<Chat />} />
 				<Route path="/:lang/:id/:type/survey/:step/:taskIndex/:surveyType" element={<Survey />} />
 				<Route path="/:lang/:id/:type/customize/:step/:taskIndex/:personaNum" element={<Customize />} />
+				<Route path="/:lang/:id/:type/goodbye" element={<Goodbye />} />
 			</Routes>
 		</Router>
   );

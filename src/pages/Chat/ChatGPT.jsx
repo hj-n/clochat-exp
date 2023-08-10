@@ -14,6 +14,8 @@ const ChatGPT = (props) => {
 
 	const navigate = useNavigate();
 
+	// navigate(0);
+
 	const metadata = require(`./chatgpt_metadata_${lang}`);
 
 	const chatInputButtonRef = useRef(null);
@@ -37,13 +39,11 @@ const ChatGPT = (props) => {
 	const fetchTaskIndices = async () => {
 		const indices = await getCurrentTaskTrialIndices(id, studyType);
 		const { title, description } = await getTaskInfo(id, currentTaskIndex, studyType);
-		const personaInfo = await getPersonaInfo(id, personaNum);
 
 
 		setTaskIndices(indices["taskIndices"]);
 		setTrialIndices(indices["trialIndices"]);
-		setPersonaImgUrl(personaInfo["imgUrls"][personaInfo["imgUrlIndex"]])
-		setPersonaName(personaInfo["inputDialogue"][0][metadata.nameKey]);
+	
 		
 
 		const newTaskIndex = indices["taskIndices"][indices["taskIndices"].length - 1];
@@ -54,6 +54,12 @@ const ChatGPT = (props) => {
 		setCurrentTrialIndex(newTrialIndex);
 		setTaskTitle(title);
 		setTaskDescription(description);
+	}
+
+	const fetchPersonaInfo  = async () => {
+		const personaInfo = await getPersonaInfo(id, personaNum);
+		setPersonaImgUrl(personaInfo["imgUrls"][personaInfo["imgUrlIndex"]])
+		setPersonaName(personaInfo["inputDialogue"][0][metadata.nameKey]);
 	}
 
 	const newInputConversation = () => {
@@ -96,6 +102,9 @@ const ChatGPT = (props) => {
 
 	useEffect(() => { 
 		fetchTaskIndices(); 
+		if (studyType == "clochat") {
+			fetchPersonaInfo();
+		}
 		(async () => {
 			const newConversations = await getConversations(id, currentTaskIndex, currentTrialIndex, studyType);
 			setConversation(newConversations);
@@ -112,10 +121,10 @@ const ChatGPT = (props) => {
 				<h2>{ studyType === "chatgpt" ? "ChatGPT" : "CloChat" }</h2>
 				<p>현재 페르소나</p>
 				<div className={styles.currentPersonaWrapper}>
-					<div className={styles.currentPersonaWrapperInner}>
+					{studyType === "clochat" && <div className={styles.currentPersonaWrapperInner}>
 						<img src={personaImgUrl} />
 						<p>{personaName}</p>
-					</div>
+					</div>}
 				</div>
 				<p>Chat</p>
 				<div className={styles.chatgptTaskList}>
