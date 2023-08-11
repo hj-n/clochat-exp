@@ -86,7 +86,7 @@ const ChatGPT = (props) => {
 	const rerunConversation = () => {
 		if (studyType === "chatgpt") {
 			(async () => {
-				await postConversationStart(id, currentTaskIndex, currentTrialIndex + 1, studyType);
+				await postConversationStart(id, currentTaskIndex, currentTrialIndex + 1, studyType, null);
 				setCurrentTrialIndex(currentTrialIndex + 1);
 			})();
 		}

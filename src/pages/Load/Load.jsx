@@ -48,7 +48,7 @@ const Load = (props) => {
 	const startConversation = () => {
 		(async () => {
 			const trialIndex = await getNextTrialIndex(id, taskIndex, "clochat");
-			await postConversationStart(id, taskIndex, trialIndex, "clochat")
+			await postConversationStart(id, taskIndex, trialIndex, "clochat", personaInfoList[selectedPersonaIndex].personaNum)
 			navigate(`/${lang}/${id}/${type}/chat/${step}/${personaInfoList[selectedPersonaIndex].personaNum}`)
 		})();
 	}

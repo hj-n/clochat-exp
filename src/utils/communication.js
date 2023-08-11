@@ -89,13 +89,14 @@ export async function getConversations(id, taskIndex, trialIndex,studyType) {
 	return response.data;
 }
 
-export async function postConversationStart(id, taskIndex, trialIndex, studyType) {
+export async function postConversationStart(id, taskIndex, trialIndex, studyType, personaNum) {
 	axiosRetry(axios, { retries: 3 });
 	const params = {
 		id: id,
 		taskIndex: taskIndex,
 		trialIndex: trialIndex,
-		studyType: studyType
+		studyType: studyType,
+		personaNum: personaNum
 	}
 	const response = await axios.post(`${server}/postconversationstart`, null, {
 		params: params

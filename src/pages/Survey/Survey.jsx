@@ -45,7 +45,7 @@ const Survey = () => {
 			const isFinished = await checkStudyComplete(id, studyType, taskIndex);
 			if (!isFinished) {
 				if (studyType === "chatgpt") {
-					await postConversationStart(id, parseInt(taskIndex) + 1, 0, "chatgpt");
+					await postConversationStart(id, parseInt(taskIndex) + 1, 0, "chatgpt", null);
 					navigate(`/${lang}/${id}/${type}/chat/${step}/x`);
 				}
 				else if (studyType === "clochat") {

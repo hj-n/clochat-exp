@@ -364,7 +364,7 @@ const Customize = () => {
 	const submitPersona = () => {
 		(async () => {
 			const trialIndex = await getNextTrialIndex(id, taskIndex, "clochat");
-			postConversationStart(id, taskIndex, trialIndex, "clochat");
+			await postConversationStart(id, taskIndex, trialIndex, "clochat", personaNum);
 			navigate(`/${lang}/${id}/${type}/chat/${step}/${personaNum}`)
 			navigate(0);
 		})();
