@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import styles from "./ChatGPT.module.scss";
 
-import { getConversations, getCurrentTaskTrialIndices, getPersonaInfo, getTaskInfo, postConversation, postConversationStart } from "../../utils/communication";
+import { getConversations, getCurrentTaskTrialIndices, getPersonaInfo, getTaskInfo, img_url_server, postConversation, postConversationStart } from "../../utils/communication";
 
 import inputSvg from "../../assets/input.svg";
 
@@ -121,7 +121,7 @@ const ChatGPT = (props) => {
 				{studyType === "clochat" && <div><p>현재 페르소나</p>
 				<div className={styles.currentPersonaWrapper}>
 					<div className={styles.currentPersonaWrapperInner}>
-						<img src={personaImgUrl} />
+						<img src={img_url_server(personaImgUrl)} />
 						<p>{personaName}</p>
 					</div>
 				</div>
@@ -164,7 +164,7 @@ const ChatGPT = (props) => {
 							return (
 								<div key={index} className={item.role === "user" ? styles.chatHistoryUserItem : styles.chatHistorySystemItem}>
 									<div className={styles.chatHistoryItemContent}>
-										<img src={studyType === "chatgpt" || item.role === "user"? metadata.icon[item.role] : personaImgUrl } alt={item.role} />
+										<img src={studyType === "chatgpt" || item.role === "user"? metadata.icon[item.role] : img_url_server(personaImgUrl) } alt={item.role} />
 										{item.content === "<loading>" ? 
 										<img src={metadata.icon["loading"]} alt="loading" /> :
 										<p>{`${item.content}`}</p>}

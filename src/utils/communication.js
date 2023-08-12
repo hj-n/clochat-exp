@@ -275,3 +275,7 @@ export async function getNextTrialIndex(id, taskIndex, studyType) {
 
 	return response.data;
 }
+
+export function img_url_server(url) {
+	return server + url;
+}

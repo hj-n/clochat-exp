@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import styles from "./Appearance.module.scss";
 import parse from 'html-react-parser';
-import { getGeneratedImageUrls, postPersonaImg, getPersonaInfo, postIsCategoryFinished } from "../../utils/communication";
+import { getGeneratedImageUrls, postPersonaImg, getPersonaInfo, postIsCategoryFinished, img_url_server } from "../../utils/communication";
 
 const Appearance = (props) => {
 
@@ -65,7 +65,7 @@ const Appearance = (props) => {
 						{urls.map((url, index) => {
 							return (
 								<img 
-									src={url} key={index} 
+									src={img_url_server(url)} key={index} 
 									onClick={() => {
 										setSelectedUrlIndex(index);
 										setSaveAppearance(true);

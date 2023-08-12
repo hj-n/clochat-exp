@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "./Load.module.scss";
-import { getNextPersonaNum, getNextTrialIndex, getPersonaInfoList, postConversationStart, postNewPersona, postPersonaDialogue, postPersonaImg } from "../../utils/communication";
+import { getNextPersonaNum, getNextTrialIndex, getPersonaInfoList, img_url_server, postConversationStart, postNewPersona, postPersonaDialogue, postPersonaImg } from "../../utils/communication";
 
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -73,7 +73,7 @@ const Load = (props) => {
 							key={index}
 							onClick={() => { setSelectedPersonaIndex(index); }}
 						>
-							<img src={personaInfo.imgUrls[personaInfo.imgUrlIndex]}></img>
+							<img src={img_url_server(personaInfo.imgUrls[personaInfo.imgUrlIndex])}></img>
 							<h4>{personaInfo.name}</h4>
 						</div>
 					)
