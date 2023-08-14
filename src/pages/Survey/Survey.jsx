@@ -62,7 +62,19 @@ const Survey = () => {
 			}
 			else {
 				if (step === "study1") {
-					navigate(`/${lang}/${id}/${type}/explanation/study2`)
+					if (surveyType === "system") {
+						if (studyType === "chatgpt") {
+							navigate(`/${lang}/${id}/${type}/explanation/study2`)
+						}
+						else {
+							navigate(`/${lang}/${id}/${type}/survey/${step}/${taskIndex}/persona`);
+							setSurveyAnswer(new Array(questions.length).fill(false));
+							navigate(0);
+						}
+					}
+					else {
+						navigate(`/${lang}/${id}/${type}/explanation/study2`)
+					}
 				}
 				else {
 					if (surveyType === "system") {

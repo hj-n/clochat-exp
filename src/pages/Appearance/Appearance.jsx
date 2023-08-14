@@ -128,7 +128,10 @@ const Appearance = (props) => {
 								</div>
 							</div>
 							<div className={styles.inputDialogueButtonWrapper}>
-								<button onClick={() => { generation(); }}>{metadata.generation}</button>
+								<button 
+									onClick={() => { generation(); }}
+									disabled={prompt === ""}
+								>{metadata.generation}</button>
 							</div>
 						</div>
 					</div>
